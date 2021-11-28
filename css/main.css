@@ -15,6 +15,7 @@
                       "ftr";
 }
 
+/*Header styling*/
 header{
   grid-area: hd;
 }
@@ -24,7 +25,6 @@ header:after {
   background: linear-gradient(to right, white 2%, lightgray 15%, lightgray 85%, white 98%);
   display: block;
 }
-/*Header styling*/
 .content{
   width: 100%;
   height: 100%;
@@ -72,11 +72,54 @@ header:after {
   margin-right: 2em;
 }
 
+/* body styling */
 main{
   grid-area: body;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
+.schedule{
+  width: 90%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  background: #e7e7e7;
+}
+.tableWeek{
+  width: auto;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  border-bottom: 0;
+}
+.schedule table{
+  width: 100%;
+  height: 80%;
+  border-collapse: collapse;
+}
+.schedule tr, td, th{
+  width: 14.3%;
+  border: 1px solid gray;
+}
+.schedule td, th{
+  padding: 1em;
+}
+.schedule td h2{
+  margin-bottom: .3em;
+  font-size: 1.5em;
+}
+.schedule td p{
+  font-weight: 700;
+  margin-bottom: .3em;
+}
+.schedule td p2{
+  color: gray;
+}
+
+/* footer styling */
 footer{
   grid-area: ftr;
 }
