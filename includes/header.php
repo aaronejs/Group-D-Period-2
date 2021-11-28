@@ -11,10 +11,10 @@
       <img src="./resources/StendenLogo.png" alt="NHL Stenden Logo">
     </div>
     <div class="pages">
-      <h2>Home</h2>
+      <a href="./index.php"><h2>Home</h2></a>
     </div>
     <div class="pages">
-      <h2>Schedule</h2>
+      <a href="schedule.php"><h2>Schedule</h2></a>
     </div>
     <div class="userInfo">
       <p><h2>Firstname Lastname</h2></p>
