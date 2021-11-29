@@ -147,6 +147,18 @@ main{
   height: 2em;
   width: 2em;
 }
+main.mainPage {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.bigBox {
+  display: flex;
+  
+}
+.mainItem {
+  display: flex;
+}
 
 /* footer styling */
 footer{

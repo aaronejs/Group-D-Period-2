@@ -9,7 +9,7 @@
     <?php
     include './includes/header.php'; // header
     ?>
-    <main>
+    <main id="mainPage">
 
 <?php 
 $date = date("Y-m-d");
@@ -31,10 +31,27 @@ $time = date("H:i");
             <input type="time" name="endTime" value="<?php echo $time;?>">
           </div>
           <button class="searchButton" type="submit" name="submit">
-            <img src="./resources/search.png" id="searchImg">
+            <img src="./resources/Search.png" id="searchImg">
           </button>
         </div>
       </form>
+      <div class="bigBox">
+        <div class="mainItem">
+          <h1>Making reservations</h1>
+          <p>Making reservations can be done by using the search bar located above. Here you will enter the amount of people that you need. There will be more information in this paragraph when the website will be built. This is just text to fill up the paragraph so it looks like a similar size to when it will go live.</p>
+          <img src="./resources/Working.png">
+        </div>
+        <div class="mainItem">
+          <h1>Making reservations</h1>
+          <p>Making reservations can be done by using the search bar located above. Here you will enter the amount of people that you need. There will be more information in this paragraph when the website will be built. This is just text to fill up the paragraph so it looks like a similar size to when it will go live.</p>
+          <img src="./resources/Working.png">
+        </div>
+        <div class="mainItem">
+          <h1>Making reservations</h1>
+          <p>Making reservations can be done by using the search bar located above. Here you will enter the amount of people that you need. There will be more information in this paragraph when the website will be built. This is just text to fill up the paragraph so it looks like a similar size to when it will go live.</p>
+          <img src="./resources/Working.png">
+        </div>
+      </div>
     </main>
     <?php
     include './includes/footer.html'; // footer
