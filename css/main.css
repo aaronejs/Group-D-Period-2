@@ -5,7 +5,7 @@
 }
 
 #container{
-  width: 100%;
+  width: 100vw;
   height: 150vh;
   display: grid;
   grid-template-columns: 1fr;
@@ -46,6 +46,8 @@ header:after {
 }
 .logo{
   padding: 5px;
+  width: 140px;
+  height: 120px;
 }
 .pages{
   display: flex;
@@ -154,7 +156,7 @@ main.mainPage {
 }
 .bigBox {
   display: flex;
-  
+  flex-direction:column;
 }
 .mainItem {
   display: flex;
