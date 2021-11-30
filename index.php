@@ -36,19 +36,25 @@ $time = date("H:i");
             </button>
           </div>
         </form>
-        <h1>1Making reservations</h1>
         <div class="mainItem">
-          <p>Making reservations can be done by using the search bar located above. Here you will enter the amount of people that you need. There will be more information in this paragraph when the website will be built. This is just text to fill up the paragraph so it looks like a similar size to when it will go live.</p>
+          <div class="mainItemText">
+            <h1>Making reservations</h1>
+            <p>Making reservations can be done by using the search bar located above. Here you will enter the amount of people that you need. There will be more information in this paragraph when the website will be built. This is just text to fill up the paragraph so it looks like a similar size to when it will go live.</p>
+          </div>
           <img src="./resources/Working.png">
         </div>
-        <h1>2Making reservations</h1>
         <div class="mainItem">
-          <p>Making reservations can be done by using the search bar located above. Here you will enter the amount of people that you need. There will be more information in this paragraph when the website will be built. This is just text to fill up the paragraph so it looks like a similar size to when it will go live.</p>
           <img src="./resources/Working.png">
+          <div class="mainItemText">
+            <h1>Making reservations</h1>
+            <p>Making reservations can be done by using the search bar located above. Here you will enter the amount of people that you need. There will be more information in this paragraph when the website will be built. This is just text to fill up the paragraph so it looks like a similar size to when it will go live.</p>
+          </div>
         </div>
-        <h1>3Making reservations</h1>
         <div class="mainItem">
-          <p>Making reservations can be done by using the search bar located above. Here you will enter the amount of people that you need. There will be more information in this paragraph when the website will be built. This is just text to fill up the paragraph so it looks like a similar size to when it will go live.</p>
+          <div class="mainItemText">
+            <h1>Making reservations</h1>
+            <p>Making reservations can be done by using the search bar located above. Here you will enter the amount of people that you need. There will be more information in this paragraph when the website will be built. This is just text to fill up the paragraph so it looks like a similar size to when it will go live.</p>
+          </div>
           <img src="./resources/Working.png">
         </div>
       </div>

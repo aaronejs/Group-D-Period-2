@@ -127,9 +127,10 @@ main{
   color: gray;
 }
 .searchBox {
+  margin: 5em;
   height: 5em;
   width: 35em;
-  background-color: gray;
+  background-color: #EEEEEE;
   border-radius: 2em;
   display: flex;
   justify-content:space-evenly;
@@ -144,7 +145,10 @@ main{
   height: 4em;
   width: 4em;
   border-radius: 3em;
-  background-color: #0691b4
+  background-color: #00eaff;
+}
+.searchButton:hover {
+  background-color: #008c99;
 }
 #searchImg {
   height: 2em;
@@ -156,8 +160,14 @@ main{
   align-items: center;
 }
 .mainItem {
+  margin: 1em;
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.mainItemText {
+  width: 25em;
 }
 
 /* footer styling */
