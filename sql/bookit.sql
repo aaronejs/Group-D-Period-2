@@ -87,8 +87,10 @@ CREATE TABLE `user` (
   `first_name` varchar(64) NOT NULL,
   `last_name` varchar(64) NOT NULL,
   `email` varchar(64) NOT NULL,
-  `password` varchar(64) NOT NULL,
-  `teacher` tinyint(1) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `teacher` boolean NOT NULL default 0,
+  `vkey` varchar(64) NOT NULL,
+  `verified` boolean NOT NULL default 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -115,7 +117,7 @@ ALTER TABLE `item`
 --
 ALTER TABLE `reserved_item`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `ItemId` (`item_id`);
+  ADD KEY `item_id` (`item_id`);
 
 --
 -- Indexes for table `room`
@@ -179,7 +181,7 @@ ALTER TABLE `booking`
 -- Constraints for table `reserved_item`
 --
 ALTER TABLE `reserved_item`
-  ADD CONSTRAINT `reserved_item_ibfk_1` FOREIGN KEY (`Item_id`) REFERENCES `item` (`id`);
+  ADD CONSTRAINT `reserved_item_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
