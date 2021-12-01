@@ -14,7 +14,10 @@
         <div class="center">
           <div class="formBox">
             <div class="contentText">
-              <h2>Create a new account</h2>
+              <h2>Welcome</h2>
+            </div>
+            <div class="contentText">
+              <h1>Create your account</h1>
             </div>
             <div class="form">
               <form method="post" autocomplete="off">

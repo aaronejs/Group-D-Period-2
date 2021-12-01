@@ -31,14 +31,21 @@
 }
 .right{
   display: flex;
+  justify-content: space-between;
 }
-.right a{
-  margin-left: auto;
-}
-.contentText{
-  margin-bottom: 1.5em;
+.right div{
+  width: auto;
 }
 
+.contentText{
+  display: flex;
+  margin-right: auto;
+  margin-left: 6.5em;
+  font-size: .8em;
+}
+.contentText h1{
+  margin-bottom: .5em;
+}
 fieldset {
   border: 1px solid gray;
   border-radius: 8px;

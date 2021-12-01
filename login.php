@@ -13,14 +13,16 @@
             <div class="center">
                 <div class="formBox">
                     <div class="contentText">
-                        <h2>Welcome</h2>
+                      <h2>Welcome</h2>
+                    </div>
+                    <div class="contentText">
                         <h1>Log in to your account</h1>
                     </div>
                     <div class="form">
                       <form method="post" autocomplete="off">
                         <div>
                           <fieldset>
-                            <legend>first name</legend>
+                            <legend>email</legend>
                             <input type="text" name="email">
                           </fieldset>
                         </div>
@@ -35,7 +37,7 @@
                             <input type="checkbox" name="rememberLogin" value="rememberLogin" id="remember">
                             Remember me
                           </div>
-                          <div>
+                          <div class="right">
                             <a href="#">Forgot your password?</a>
                           </div>
                         </div>
