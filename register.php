@@ -9,6 +9,7 @@
   -->
     <?php
       include './includes/header.php'; // Header
+      include './includes/database.php'; //database connection
     ?>
       <main>
         <div class="center">
@@ -61,7 +62,19 @@
               if (!empty($_POST['firstname']) && !empty($_POST['lastname']) &&
                   !empty($_POST['password']) && !empty($_POST['passwordConfirm']) &&
                   !empty($_POST['email'])){
-                
+                if($_POST['password'] == $_POST['passwordConfirm']){
+                  if (strlen(trim($_POST['password'])) > 6) {
+                    $firstname = $_POST['firstname'];
+                    $lastname = $_POST['lastname'];
+                    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                    $sql = "INSERT INTO user (first_name, last_name, email, password)
+                          VALUES (?,?,?,?)";
+                  }else {
+                    echo "<div class='warning'>Password must be longer than 6 characters!</div>";
+                  }
+                }else{
+                  echo "<div class='warning'>Passwords do not match!</div>";
+                }
               }else {
                 echo "<div class='warning'>Please fill in all fields!</div>";
               }
