@@ -70,8 +70,8 @@
                       if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
                         mysqli_stmt_bind_param($stmt, "s", $_POST['email']); //bind the param to be the email from the form
                         if(!mysqli_stmt_execute($stmt)){ //execute the statement
-                          $error = "Error executing query";
-                          die(mysqli_error($conn));
+                          $error = "Error executing query" . mysqli_error($conn);
+                          die();
                         }
                         mysqli_stmt_store_result($stmt);
                         $emailHandle = substr($_POST['email'], strpos($_POST['email'], "@") + 1); //take a substring from email input
@@ -89,10 +89,12 @@
                                 mysqli_close($conn); //close connection
                                 header("location: ./register.php?success=registered"); //redirect back to register page with message
                               }else{
-                                die(mysqli_error($conn)); //die if we cant execute statement
+                                $error = mysqli_error($conn);
+                                die(); //die if we cant execute statement
                               }
                             }else{
-                              die(mysqli_error($conn)); //die if we cant prepare statement
+                              $error = mysqli_error($conn);
+                              die(); //die if we cant prepare statement
                             }
                           }else{
                             $error = "Email already exists!";
