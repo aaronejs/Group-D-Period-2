@@ -3,9 +3,14 @@
   justify-content: center;
   align-items: center;
 }
+.center p{
+  margin-right: .2em;
+}
 .formBox{
   width: 563px;
-  height: 700px;
+  height: auto;
+  padding-top: 2em;
+  padding-bottom: 2em;
   background: lightgray;
   border-radius: 8px;
   display: flex;
@@ -17,6 +22,18 @@
   padding-top: 10px;
   padding-bottom: 10px;
   width: 400px;
+}
+.form a{
+  color: blue;
+}
+.form a:hover{
+  color: gray;
+}
+.right{
+  display: flex;
+}
+.right a{
+  margin-left: auto;
 }
 .contentText{
   margin-bottom: 1.5em;
