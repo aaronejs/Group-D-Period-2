@@ -64,11 +64,28 @@
                   !empty($_POST['email'])){
                 if($_POST['password'] == $_POST['passwordConfirm']){
                   if (strlen(trim($_POST['password'])) > 6) {
-                    $firstname = $_POST['firstname'];
-                    $lastname = $_POST['lastname'];
-                    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                    $sql = "INSERT INTO user (first_name, last_name, email, password)
-                          VALUES (?,?,?,?)";
+                    if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+                      $firstname = $_POST['firstname'];
+                      $lastname = $_POST['lastname'];
+                      $email = $_POST['email'];
+                      $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                      $sql = "INSERT INTO user (first_name, last_name, email, password) VALUES (?,?,?,?)";
+                      if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
+                        mysqli_stmt_bind_param($stmt, "ssss", $firstname, $lastname, $email, $password); //need to bind values to parameters
+                        if(mysqli_stmt_execute($stmt)){ //check if we can execute the statement
+                          mysqli_stmt_close($stmt);
+                          mysqli_close($conn);
+                          header("location: ./register.php?success=added_record");
+                          echo "<div class='success'>Successfully registered!</div>";
+                        }else{
+                          die(mysqli_error($conn));//die if we cant execute statement
+                        }
+                      }else{
+                        echo "Error: " . mysqli_error($conn);
+                      }
+                    }else{
+                      echo "<div class='warning'>Invalid email format!</div>";
+                    }
                   }else {
                     echo "<div class='warning'>Password must be longer than 6 characters!</div>";
                   }
