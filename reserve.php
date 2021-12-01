@@ -11,9 +11,27 @@
         ?>
 		<!--- Main body --->
 			<div class="mainContainer">
-				<div class="dateSelection">
-					<!--- Data Selection form --->
-				</div>
+				<div class="bigBox">
+			        <form>
+			          <div class="searchBox">
+			            <div class="boxItem">
+			              <h3>Date</h3>
+			              <input type="date" name="searchDate" value="<?php echo $date;?>">
+			            </div>
+			            <div class="boxItem">
+			              <h3>Start time</h3>
+			              <input type="time" name="startTime" value="<?php echo $time;?>">
+			            </div>
+			            <div class="boxItem">
+			              <h3>End time</h3>
+			              <input type="time" name="endTime" value="<?php echo $time;?>">
+			            </div>
+			            <button class="searchButton" type="submit" name="submit">
+			              <img src="./resources/Search.png" id="searchImg">
+			            </button>
+			          </div>
+			        </form>
+			    </div>
 				<div class="mapAndForm">
 					<img src="./resources/map.png" alt="Map" class="reserveMap">
 					<div class="formReserve">
@@ -21,15 +39,6 @@
 							<label for="numberOfPeople">Number Of People</label>
 							<p><label for="laptop">Laptop</label>
 							<input type="checkbox" name="laptop" class="reserveCheckbox"></p>
-							<!--- Function
-							<input type="checkbox" class="laptop" onclick="function(
-							<?php
-								if(isset($_POST['laptop'])) {
-							    	echo "<input type="number" class="laptopQuantity" name="latopQuantity" min="1" max="6">";	
-							  	} 
-							?>
-							)"> 
-							--->
 							<p><label for="extensionCabel">Extension Cabel</label>
 							<input type="checkbox" name="extensionCabel" class="reserveCheckbox"></p>
 							<p><label for="tv">TV</label>
