@@ -64,14 +64,14 @@
                   !empty($_POST['password']) && !empty($_POST['passwordConfirm']) &&
                   !empty($_POST['email'])){ //check if all fields have been filled
                 if($_POST['password'] == $_POST['passwordConfirm']){
-                  if (strlen(trim($_POST['password'])) > 6) {
-                    if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+                  if (strlen(trim($_POST['password'])) > 6) { //check if password is longer than 6 characters
+                    if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){ //validate email
                       $sql = "SELECT email FROM user WHERE email = ?";//query command to search if email already exists
                       if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
                         mysqli_stmt_bind_param($stmt, "s", $_POST['email']); //bind the param to be the email from the form
                         if(!mysqli_stmt_execute($stmt)){ //execute the statement
                           $error = "Error executing query" . mysqli_error($conn);
-                          die();
+                          die(); //die if we cant execute statement
                         }
                         mysqli_stmt_store_result($stmt);
                         $emailHandle = substr($_POST['email'], strpos($_POST['email'], "@") + 1); //take a substring from email input
@@ -87,9 +87,9 @@
                               if(mysqli_stmt_execute($stmt)){ //check if we can execute the statement
                                 mysqli_stmt_close($stmt); //close statement
                                 mysqli_close($conn); //close connection
-                                session_start();
-                                $_SESSION['email'] = $email;
-                                $_SESSION["vkey"] = hash('sha256', time().$email);
+                                session_start(); //start a session
+                                $_SESSION['email'] = $email; //make email into a session variable
+                                $_SESSION["vkey"] = hash('sha256', time().$email); //hashed verification code
                                 header("location: ./sendmail.php"); //redirect back to register page with message
                               }else{
                                 $error = "Error: " . mysqli_error($conn);
@@ -120,7 +120,7 @@
               }else {
                 $error = "Please fill in all fields!";
               }
-              if($error != NULL){
+              if($error != NULL){ //echo error if the variable has been set
                 echo "<div class='warning'>".$error."</div>";
               }
             }
