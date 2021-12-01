@@ -206,80 +206,6 @@ footer .content{
 
 /* End of footer styling */
 
-/* Log in css */
-
-.middle{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.formarea{
-  width: 550px;
-  height: 500px;
-  background: lightgray;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;  
-}
-.loginform div{
-  padding-top: 10px;
-  padding-bottom: 10px;
-  width: 400px;
-}
-.textcontent{
-  margin-bottom: 1px;
-  padding-right: 164px;
-  
-}
-.loginField{
-  border: 1px solid gray;
-  border-radius: 8px;
-  padding: 15px;
-  color: gray;
-}
-.loginButton{
-    background: #005aaa;
-    height: 50px;
-    width: 100%;
-    border-radius: 8px;
-    color: white;    
-}
-.welcome{
-    font-size: 1.2em;
-    margin-bottom: 0px;
-}
-.loginInput{
-    font-size: 1.2em;
-    padding: 3px;
-    border: none;
-    outline: none;
-    width: 100%;
-    background: none;
-}
-.forgotpassword{
-    padding-left: 125px;
-    color: blue;
-}
-.paragraf{
-    font-size: 1em;
-    display: inline;
-    padding-left: 70px;
-}
-.restore{
-    font-size: 1em;
-    color: blue;
-}
-.mailpassword{
-    font-size: 1.2em;
-}
-.headlogin{
-    margin-top: 0px;
-    margin-bottom: 10px;
-}
-/* End log in */
-
 /* Reservation start */
 
 .mapAndForm {
@@ -301,7 +227,7 @@ footer .content{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   font-size: 20px;
 }
 
@@ -310,8 +236,8 @@ footer .content{
   height: 50px;
   width: 100%;
   border-radius: 8px;
-  color: white; 
-  font-size: 20px;   
+  color: white;
+  font-size: 20px;
 }
 
 .reserveCheckbox {
