@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2021 at 07:35 PM
+-- Generation Time: Dec 01, 2021 at 12:12 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `bookit`
 --
+CREATE DATABASE IF NOT EXISTS `bookit` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `bookit`;
 
 -- --------------------------------------------------------
 
