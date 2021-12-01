@@ -8,7 +8,7 @@
   <body>
   -->
     <?php
-    include './includes/header.php'; // Header
+      include './includes/header.php'; // Header
     ?>
       <main>
         <div class="center">
@@ -60,7 +60,7 @@
         </div>
       </main>
       <?php
-      include './includes/footer.html'; // Footer
+        include './includes/footer.html'; // Footer
       ?>
     </div>
   </body>

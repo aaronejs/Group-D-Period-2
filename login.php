@@ -16,7 +16,7 @@
                       <h2>Welcome</h2>
                     </div>
                     <div class="contentText">
-                        <h1>Log in to your account</h1>
+                      <h1>Log in to your account</h1>
                     </div>
                     <div class="form">
                       <form method="post" autocomplete="off">
