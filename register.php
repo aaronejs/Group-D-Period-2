@@ -58,6 +58,7 @@
               </form>
             </div>
             <?php
+            $error = NULL;
             if (isset($_POST['register'])){
               if (!empty($_POST['firstname']) && !empty($_POST['lastname']) &&
                   !empty($_POST['password']) && !empty($_POST['passwordConfirm']) &&
@@ -69,7 +70,7 @@
                       if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
                         mysqli_stmt_bind_param($stmt, "s", $_POST['email']); //bind the param to be the email from the form
                         if(!mysqli_stmt_execute($stmt)){ //execute the statement
-                          echo "Error executing query";
+                          $error = "Error executing query";
                           die(mysqli_error($conn));
                         }
                         mysqli_stmt_store_result($stmt);
@@ -94,25 +95,28 @@
                               die(mysqli_error($conn)); //die if we cant prepare statement
                             }
                           }else{
-                            echo "<div class='warning'>Email already exists!</div>";
+                            $error = "Email already exists!";
                           }
                         }else{
-                          echo "<div class='warning'>Not a valid NHL Stenden email!</div>";
+                          $error = "Not a valid NHL Stenden email!";
                         }
                       }else{
-                        echo "Error: " . mysqli_error($conn);
+                        $error = "Error: " . mysqli_error($conn);
                       }
                     }else{
-                      echo "<div class='warning'>Invalid email format!</div>";
+                      $error = "Invalid email format!";
                     }
                   }else {
-                    echo "<div class='warning'>Password must be longer than 6 characters!</div>";
+                    $error = "Password must be longer than 6 characters!";
                   }
                 }else{
-                  echo "<div class='warning'>Passwords do not match!</div>";
+                  $error = "Passwords do not match!";
                 }
               }else {
-                echo "<div class='warning'>Please fill in all fields!</div>";
+                $error = "Please fill in all fields!";
+              }
+              if($error != NULL){
+                echo "<div class='warning'>".$error."</div>";
               }
             }
             ?>
