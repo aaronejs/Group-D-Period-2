@@ -234,6 +234,10 @@ footer .content{
   margin-top: 20px;
 }
 
+.formReserve p {
+  margin-bottom: 7px;
+}
+
 .reserveButton{
   background: #005aaa;
   height: 50px;
@@ -241,6 +245,7 @@ footer .content{
   border-radius: 8px;
   color: white;
   font-size: 20px;
+  margin-top: 15px;
 }
 
 .reserveCheckbox {

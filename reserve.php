@@ -36,7 +36,7 @@
 					<img src="./resources/map.png" alt="Map" class="reserveMap">
 					<div class="formReserve">
 						<form method="post" class="form">
-							<label for="numberOfPeople">Number Of People</label>
+							<p><label for="numberOfPeople">Number Of People</label></p>
 							<p><label for="laptop">Laptop</label>
 							<input type="checkbox" name="laptop" class="reserveCheckbox"></p>
 							<p><label for="extensionCabel">Extension Cabel</label>
