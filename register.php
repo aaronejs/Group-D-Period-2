@@ -58,27 +58,39 @@
               </form>
             </div>
             <?php
-            if (isset($_POST['register'])) {
+            if (isset($_POST['register'])){
               if (!empty($_POST['firstname']) && !empty($_POST['lastname']) &&
                   !empty($_POST['password']) && !empty($_POST['passwordConfirm']) &&
-                  !empty($_POST['email'])){
+                  !empty($_POST['email'])){ //check if all fields have been filled
                 if($_POST['password'] == $_POST['passwordConfirm']){
                   if (strlen(trim($_POST['password'])) > 6) {
                     if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-                      $firstname = $_POST['firstname'];
-                      $lastname = $_POST['lastname'];
-                      $email = $_POST['email'];
-                      $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                      $sql = "INSERT INTO user (first_name, last_name, email, password) VALUES (?,?,?,?)";
+                      $sql = "SELECT email FROM user WHERE email = ?";//query command to search if email already exists
                       if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
-                        mysqli_stmt_bind_param($stmt, "ssss", $firstname, $lastname, $email, $password); //need to bind values to parameters
-                        if(mysqli_stmt_execute($stmt)){ //check if we can execute the statement
-                          mysqli_stmt_close($stmt);
-                          mysqli_close($conn);
-                          header("location: ./register.php?success=added_record");
-                          echo "<div class='success'>Successfully registered!</div>";
+                        mysqli_stmt_bind_param($stmt, "s", $_POST['email']); //bind the param to be the email from the form
+                        if(!mysqli_stmt_execute($stmt)){ //execute the statement
+                          echo "Error executing query";
+                          die(mysqli_error($conn));
+                        }
+                        mysqli_stmt_store_result($stmt);
+                        if(mysqli_stmt_num_rows($stmt) == 0){ //if we get back no results then continue
+                          $firstname = $_POST['firstname'];
+                          $lastname = $_POST['lastname'];
+                          $email = $_POST['email'];
+                          $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //hash password
+                          $sql = "INSERT INTO user (first_name, last_name, email, password) VALUES (?,?,?,?)"; //query to insert into database
+                          if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
+                            mysqli_stmt_bind_param($stmt, "ssss", $firstname, $lastname, $email, $password); //need to bind values to parameters
+                            if(mysqli_stmt_execute($stmt)){ //check if we can execute the statement
+                              mysqli_stmt_close($stmt); //close statement
+                              mysqli_close($conn); //close connection
+                              header("location: ./register.php?success=registered"); //redirect back to register page with message
+                            }else{
+                              die(mysqli_error($conn));//die if we cant execute statement
+                            }
+                          }
                         }else{
-                          die(mysqli_error($conn));//die if we cant execute statement
+                          echo "<div class='warning'>Email already exists!</div>";
                         }
                       }else{
                         echo "Error: " . mysqli_error($conn);
