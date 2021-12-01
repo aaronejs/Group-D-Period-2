@@ -11,6 +11,10 @@
         ?>
 		<!--- Main body --->
 			<div class="mainContainer">
+				<?php 
+					$date = date("Y-m-d");
+					$time = date("H:i");
+				?>
 				<div class="bigBox">
 			        <form>
 			          <div class="searchBox">
