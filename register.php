@@ -73,24 +73,31 @@
                           die(mysqli_error($conn));
                         }
                         mysqli_stmt_store_result($stmt);
-                        if(mysqli_stmt_num_rows($stmt) == 0){ //if we get back no results then continue
-                          $firstname = $_POST['firstname'];
-                          $lastname = $_POST['lastname'];
-                          $email = $_POST['email'];
-                          $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //hash password
-                          $sql = "INSERT INTO user (first_name, last_name, email, password) VALUES (?,?,?,?)"; //query to insert into database
-                          if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
-                            mysqli_stmt_bind_param($stmt, "ssss", $firstname, $lastname, $email, $password); //need to bind values to parameters
-                            if(mysqli_stmt_execute($stmt)){ //check if we can execute the statement
-                              mysqli_stmt_close($stmt); //close statement
-                              mysqli_close($conn); //close connection
-                              header("location: ./register.php?success=registered"); //redirect back to register page with message
+                        $emailHandle = substr($_POST['email'], strpos($_POST['email'], "@") + 1);
+                        if (str_contains($emailHandle, 'nhlstenden')) {
+                          if(mysqli_stmt_num_rows($stmt) == 0){ //if we get back no results then continue
+                            $firstname = $_POST['firstname'];
+                            $lastname = $_POST['lastname'];
+                            $email = $_POST['email'];
+                            $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //hash password
+                            $sql = "INSERT INTO user (first_name, last_name, email, password) VALUES (?,?,?,?)"; //query to insert into database
+                            if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
+                              mysqli_stmt_bind_param($stmt, "ssss", $firstname, $lastname, $email, $password); //need to bind values to parameters
+                              if(mysqli_stmt_execute($stmt)){ //check if we can execute the statement
+                                mysqli_stmt_close($stmt); //close statement
+                                mysqli_close($conn); //close connection
+                                header("location: ./register.php?success=registered"); //redirect back to register page with message
+                              }else{
+                                die(mysqli_error($conn)); //die if we cant execute statement
+                              }
                             }else{
-                              die(mysqli_error($conn));//die if we cant execute statement
+                              die(mysqli_error($conn)); //die if we cant prepare statement
                             }
+                          }else{
+                            echo "<div class='warning'>Email already exists!</div>";
                           }
                         }else{
-                          echo "<div class='warning'>Email already exists!</div>";
+                          echo "<div class='warning'>Not a valid NHL Stenden email!</div>";
                         }
                       }else{
                         echo "Error: " . mysqli_error($conn);
