@@ -73,8 +73,8 @@
                           die(mysqli_error($conn));
                         }
                         mysqli_stmt_store_result($stmt);
-                        $emailHandle = substr($_POST['email'], strpos($_POST['email'], "@") + 1);
-                        if (str_contains($emailHandle, 'nhlstenden')) {
+                        $emailHandle = substr($_POST['email'], strpos($_POST['email'], "@") + 1); //take a substring from email input
+                        if (str_contains($emailHandle, 'nhlstenden')) { //if string contains 'nhlstenden' continue
                           if(mysqli_stmt_num_rows($stmt) == 0){ //if we get back no results then continue
                             $firstname = $_POST['firstname'];
                             $lastname = $_POST['lastname'];
