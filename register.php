@@ -87,13 +87,16 @@
                               if(mysqli_stmt_execute($stmt)){ //check if we can execute the statement
                                 mysqli_stmt_close($stmt); //close statement
                                 mysqli_close($conn); //close connection
-                                header("location: ./register.php?success=registered"); //redirect back to register page with message
+                                session_start();
+                                $_SESSION['email'] = $email;
+                                $_SESSION["vkey"] = hash('sha256', time().$email);
+                                header("location: ./sendmail.php"); //redirect back to register page with message
                               }else{
-                                $error = mysqli_error($conn);
+                                $error = "Error: " . mysqli_error($conn);
                                 die(); //die if we cant execute statement
                               }
                             }else{
-                              $error = mysqli_error($conn);
+                              $error = "Error: " . mysqli_error($conn);
                               die(); //die if we cant prepare statement
                             }
                           }else{
