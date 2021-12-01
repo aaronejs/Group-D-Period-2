@@ -56,6 +56,17 @@
                 </div>
               </form>
             </div>
+            <?php
+            if (isset($_POST['register'])) {
+              if (!empty($_POST['firstname']) && !empty($_POST['lastname']) &&
+                  !empty($_POST['password']) && !empty($_POST['passwordConfirm']) &&
+                  !empty($_POST['email'])){
+                
+              }else {
+                echo "<div class='warning'>Please fill in all fields!</div>";
+              }
+            }
+            ?>
           </div>
         </div>
       </main>

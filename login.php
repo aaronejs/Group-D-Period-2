@@ -49,8 +49,20 @@
                         </div>
                       </form>
                     </div>
+                    <?php
+                    if (isset($_POST['login'])) {
+                      if(!empty($_POST['email']) && !empty($_POST['password'])){
+
+                      }else {
+                        echo "<div class='warning'>Invalid email or password!</div>";
+                      }
+                    }
+                    ?>
                 </div>
             </div>
+
+
+
         </main>
         <?php
           include './includes/footer.html'; // Footer
