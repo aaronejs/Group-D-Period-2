@@ -85,7 +85,7 @@ main{
   grid-area: body;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 .schedule{
   width: 90%;
@@ -126,12 +126,14 @@ main{
 .schedule td p2{
   color: gray;
 }
+/* Index start */
 .searchBox {
   margin: 5em;
   height: 5em;
   width: 35em;
   background-color: #EEEEEE;
   border-radius: 2em;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   display: flex;
   justify-content:space-evenly;
   align-items: center;
@@ -142,13 +144,15 @@ main{
   align-items: center;
 }
 .searchButton {
+  padding: 0px;
+  margin: 0px;
   height: 4em;
   width: 4em;
   border-radius: 3em;
-  background-color: #00eaff;
+  background-color: #009BAA;
 }
 .searchButton:hover {
-  background-color: #008c99;
+  background-color: #009caad2;
 }
 #searchImg {
   height: 2em;
@@ -169,6 +173,7 @@ main{
 .mainItemText {
   width: 25em;
 }
+/* Index end */
 
 /* Reservation start */
 .mapAndForm {
