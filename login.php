@@ -8,6 +8,7 @@
     <body>
         <?php
           include './includes/header.php'; // Header
+          include './includes/database.php';
         ?>
         <main>
           <div class="center">
@@ -51,6 +52,7 @@
                 </div>
                 <?php
                 $error = NULL;
+                session_start();
                 if(isset($_GET['success'])){
                   if ($_GET['success'] == "verified") {
                     $success = "Verification successful, you may now log in!";
@@ -58,9 +60,37 @@
                   }
                 }
                 if (isset($_POST['login'])) {
-
                   if(!empty($_POST['email']) && !empty($_POST['password'])){
-
+                    if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){ //validate email
+                      $email = $_POST['email'];
+                      $sql = "SELECT first_name, last_name, password FROM user WHERE email = ?"; //query to insert into database
+                      if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
+                        mysqli_stmt_bind_param($stmt, "s", $email); //need to bind values to parameters
+                        if(mysqli_stmt_execute($stmt)){ //execute the statement
+                          mysqli_stmt_bind_result($stmt, $firstname, $lastname $password); //bind results
+                          mysqli_stmt_store_result($stmt);
+                          if(mysqli_stmt_num_rows($stmt) != 0){
+                            while(mysqli_stmt_fetch($stmt)){
+                              if (password_verify($_POST['password'], $password)) { //verify password
+                                $_SESSION['firstname'] = $firstname; //set session variables to use across pages
+                                $_SESSION['lastname'] = $lastname;
+                              } else {
+                                $error = "Incorrect password!";
+                              }
+                            }
+                          }else {
+                            $error = "Incorrect email!";
+                          }
+                        }else {
+                          echo "Error executing query";
+                          die(mysqli_error($conn));
+                        }
+                      }else{
+                        die(mysqli_error($conn));
+                      }
+                    }else {
+                      $error = "Invalid email!";
+                    }
                   }else {
                     $error = "Please fill in all the fields!";
                   }
