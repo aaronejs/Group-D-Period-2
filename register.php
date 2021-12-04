@@ -10,6 +10,7 @@
     <?php
       include './includes/header.php'; // Header
       include './includes/database.php'; //database connection
+      include './includes/sendmail.php';
     ?>
       <main>
         <div class="center">
@@ -81,16 +82,20 @@
                             $lastname = $_POST['lastname'];
                             $email = $_POST['email'];
                             $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //hash password
-                            $sql = "INSERT INTO user (first_name, last_name, email, password) VALUES (?,?,?,?)"; //query to insert into database
+                            $vkey = hash('sha256', time().$email);
+                            $sql = "INSERT INTO user (first_name, last_name, email, password, vkey) VALUES (?,?,?,?,?)"; //query to insert into database
+                            $message = "<a href=http://localhost/github/Group-D-Period-2/verify.php?vkey="
+                                      . $vkey . ">Verify email</a>"; //message for mail
                             if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
-                              mysqli_stmt_bind_param($stmt, "ssss", $firstname, $lastname, $email, $password); //need to bind values to parameters
+                              mysqli_stmt_bind_param($stmt, "sssss", $firstname, $lastname, $email, $password, $vkey); //need to bind values to parameters
                               if(mysqli_stmt_execute($stmt)){ //check if we can execute the statement
-                                mysqli_stmt_close($stmt); //close statement
-                                mysqli_close($conn); //close connection
-                                session_start(); //start a session
-                                $_SESSION['email'] = $email; //make email into a session variable
-                                $_SESSION["vkey"] = hash('sha256', time().$email); //hashed verification code
-                                header("location: ./sendmail.php"); //redirect back to register page with message
+                                if(mail($email, $subject, $message, $header)){ //params are set in /sendmail.php
+                                  mysqli_stmt_close($stmt); //close statement
+                                  mysqli_close($conn); //close connection
+                                  header("location:./thankyou.php"); //redirect to thankyou page
+                                }else{
+                                  $error = "Error sending verification email";
+                                }
                               }else{
                                 $error = "Error: " . mysqli_error($conn);
                                 die(); //die if we cant execute statement
