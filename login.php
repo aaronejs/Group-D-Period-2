@@ -67,7 +67,7 @@
                       if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
                         mysqli_stmt_bind_param($stmt, "s", $email); //need to bind values to parameters
                         if(mysqli_stmt_execute($stmt)){ //execute the statement
-                          mysqli_stmt_bind_result($stmt, $firstname, $lastname $password); //bind results
+                          mysqli_stmt_bind_result($stmt, $firstname, $lastname, $password); //bind results
                           mysqli_stmt_store_result($stmt);
                           if(mysqli_stmt_num_rows($stmt) != 0){
                             while(mysqli_stmt_fetch($stmt)){
