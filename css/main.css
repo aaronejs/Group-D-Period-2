@@ -105,6 +105,13 @@ main{
   border: 1px solid gray;
   border-bottom: 0;
 }
+.tableHeader{
+  height: 60px;
+}
+.tableContent{
+  height: 800px;
+  overflow: overlay;
+}
 .schedule table{
   width: 100%;
   height: 80%;
@@ -128,6 +135,7 @@ main{
 .schedule td p2{
   color: gray;
 }
+
 /* Index start */
 .searchBox {
   margin: 5em;
