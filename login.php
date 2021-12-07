@@ -58,8 +58,7 @@
                     $success = "Verification successful, you may now log in!";
                     echo "<div class='success'>".$success."</div>";
                   }
-                }
-                if(isset($_GET['error'])){
+                }elseif(isset($_GET['error'])){
                   if($_GET['error'] == "login"){
                     echo "<div class='warning'>Please log in to use the service!</div>";
                   }
