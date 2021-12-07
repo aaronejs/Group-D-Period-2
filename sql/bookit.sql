@@ -46,7 +46,7 @@ CREATE TABLE `booking` (
 
 CREATE TABLE `item` (
   `id` int(11) NOT NULL,
-  `item_name` varchar(64) NOT NULL,
+  `item_name` varchar(255) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -86,10 +86,10 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `first_name` varchar(64) NOT NULL,
   `last_name` varchar(64) NOT NULL,
-  `email` varchar(64) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `teacher` boolean NOT NULL default 0,
-  `vkey` varchar(64) NOT NULL,
+  `user_type` varchar(64) NOT NULL default 'student',
+  `vkey` varchar(255) NOT NULL,
   `verified` boolean NOT NULL default 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
