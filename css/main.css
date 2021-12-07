@@ -64,6 +64,7 @@ header:after {
   justify-content: center;
   flex-direction: column;
   margin-left: auto;
+  margin-right: 2em;
 }
 .userInfo h2{
   font-weight: normal;

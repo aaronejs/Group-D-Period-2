@@ -20,7 +20,7 @@
                   <h1>Log in to your account</h1>
                 </div>
                 <div class="form">
-                  <form method="post" autocomplete="off">
+                  <form method="post">
                     <div>
                       <fieldset>
                         <legend>email</legend>
@@ -52,7 +52,6 @@
                 </div>
                 <?php
                 $error = NULL;
-                session_start();
                 if(isset($_GET['success'])){
                   if ($_GET['success'] == "verified") {
                     $success = "Verification successful, you may now log in!";
