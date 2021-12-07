@@ -5,7 +5,6 @@
     <title></title>
     <?php
     include './includes/header.php'; // header
-    session_start();
     if(!isset($_SESSION['sessionID'])){
       header("location:./login.php?error=login");
     }
