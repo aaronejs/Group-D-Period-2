@@ -78,16 +78,21 @@
                         $emailHandle = substr($_POST['email'], strpos($_POST['email'], "@") + 1); //take a substring from email input
                         if (str_contains($emailHandle, 'nhlstenden')) { //if string contains 'nhlstenden' continue
                           if(mysqli_stmt_num_rows($stmt) == 0){ //if we get back no results then continue
+                            if (str_contains($emailHandle, 'student')) {
+                              $type = "student";
+                            }else{
+                              $type = "teacher";
+                            }
                             $firstname = $_POST['firstname'];
                             $lastname = $_POST['lastname'];
                             $email = $_POST['email'];
                             $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //hash password
                             $vkey = hash('sha256', time().$email);
-                            $sql = "INSERT INTO user (first_name, last_name, email, password, vkey) VALUES (?,?,?,?,?)"; //query to insert into database
+                            $sql = "INSERT INTO user (first_name, last_name, email, password, vkey, user_type) VALUES (?,?,?,?,?,?)"; //query to insert into database
                             $message = "<a href=http://localhost/github/Group-D-Period-2/verify.php?vkey="
                                       . $vkey . ">Verify email</a>"; //message for mail
                             if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
-                              mysqli_stmt_bind_param($stmt, "sssss", $firstname, $lastname, $email, $password, $vkey); //need to bind values to parameters
+                              mysqli_stmt_bind_param($stmt, "ssssss", $firstname, $lastname, $email, $password, $vkey, $type); //need to bind values to parameters
                               if(mysqli_stmt_execute($stmt)){ //check if we can execute the statement
                                 if(mail($email, $subject, $message, $header)){ //params are set in /sendmail.php
                                   mysqli_stmt_close($stmt); //close statement
