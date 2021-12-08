@@ -31,7 +31,7 @@
 			              <input type="time" name="endTime" value="<?php echo $time;?>">
 			            </div>
 			            <button class="searchButton" type="submit" name="submit">
-			              <img src="./resources/Search.png" id="searchImg">
+			              <img src="./resources/whiteSearch.png" id="searchImg">
 			            </button>
 			          </div>
 			        </form>
