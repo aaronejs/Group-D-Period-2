@@ -17,7 +17,7 @@ $time = date("H:i");
 ?>
 
       <div class="bigBox">
-        <form>
+        <form method="post">
           <div class="searchBox">
             <div class="boxItem">
               <h3>Date</h3>
