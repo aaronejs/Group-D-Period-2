@@ -2,7 +2,7 @@
   $date = date("Y-m-d");
   $time = date("H:i");
 ?>
-<div class="bigBox">
+
   <form method="post" action="./reserve.php">
     <div class="searchBox">
       <div class="boxItem">

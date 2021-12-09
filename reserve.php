@@ -6,37 +6,18 @@
 		<title>Reservation</title>
 	</head>
 	<body>
-        <?php
-            include './includes/header.php'; // Header
-        ?>
-		<!--- Main body --->
-			<div class="mainContainer">
-				<?php 
-					$date = date("Y-m-d");
-					$time = date("H:i");
+    <?php
+      include './includes/header.php'; // Header
+			if(!isset($_SESSION['sessionID'])){
+				header("location:./login.php");
+			}
+    ?>
+		<main>
+			<div class="bigBox">
+				<?php
+				include './includes/search.php';
 				?>
-				<div class="bigBox">
-			        <form>
-			          <div class="searchBox">
-			            <div class="boxItem">
-			              <h3>Date</h3>
-			              <input type="date" name="searchDate" value="<?php echo $date;?>">
-			            </div>
-			            <div class="boxItem">
-			              <h3>Start time</h3>
-			              <input type="time" name="startTime" value="<?php echo $time;?>">
-			            </div>
-			            <div class="boxItem">
-			              <h3>End time</h3>
-			              <input type="time" name="endTime" value="<?php echo $time;?>">
-			            </div>
-			            <button class="searchButton" type="submit" name="submit">
-			              <img src="./resources/whiteSearch.png" id="searchImg">
-			            </button>
-			          </div>
-			        </form>
-			    </div>
-				<div class="mapAndForm">
+				<div class="mainItem">
 					<img src="./resources/map.png" alt="Map" class="reserveMap">
 					<div class="formReserve">
 						<form method="post" class="form">
@@ -62,7 +43,8 @@
 						<p>We’re not only independently rated as one of the top 3 universities of applied sciences in the Netherlands, our students also highly rank the value of our education. Our top facilities, professional lecturers, real-world projects and international environment mean students earn degrees that really work in industry.</p>
 					</div>
 				</div>
-		    </div>
+			</div>
+		</main>
 	    <!--- End of Main body --->
         <?php
             include './includes/footer.html'; // Footer
