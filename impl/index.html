@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calander</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="date-search">
+            <div class="select_date">
+                <div class="select" onclick="openModal('date')">
+                    <span class="openModal">Arrival/Departure</span>
+                    <span class="data" id="data">Date</span>
+                </div>
+                <div class="select" onclick="openModal('time1')">
+                    <span class="openModal">Beginning</span>
+                    <span class="data" id="time1">xx:xx</span>
+                </div>
+                <div class="select" onclick="openModal('time2')">
+                    <span class="openModal">Ending</span>
+                    <span class="data" id="time2">xx:xx</span>
+                </div>
+                <a href="#" class="search"></a>
+                <!-- modal -->
+                <div class="modal" id="calander" style="display: none;">
+                    <div class="selected">
+                        <a href="#" class="left" onclick="selectMonth('left')">‹</a>
+                        <spna class="date" id="month"></spna>
+                        <a href="#" class="right" onclick="selectMonth('right')">›</a>
+                    </div>
+                    <div class="number_day">
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                        <span class="day"></span>
+                    </div>
+
+                </div>
+                <div class="modal" id="time" style="display: none;">
+                    <div class="hour">
+                        <a href="#" id="up" onclick="selectTime('h_up')"></a>
+                        <div class="text">
+                            <span class="data" id="hour">01</span>
+                            <span>Hour</span>
+                        </div>
+                        <a href="#" id="down" onclick="selectTime('h_down')"></a>
+                    </div>
+                    <span class="separator">:</span>
+                    <div class="minute">
+                        <a href="#" id="up" onclick="selectTime('m_up')"></a>
+                        <div class="text">
+                            <span class="data" id="minute">00</span>
+                            <span>Minute</span>
+                        </div>
+                        <a href="#" id="down" onclick="selectTime('m_down')"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="info-block">
+            <div class="text">
+                <span>Making reservations</span>
+                <p style="width: 663px;">Making reservations can be done by using the search bar located above.<br> Here you will enter the amount of people that you need. There will be more information in this paragraph when the website will be built. This is just text to fill
+                    up the paragraph so it looks like a similar size to when it will go live.</p>
+            </div>
+            <img src="img/1.png" class="img" alt="">
+        </div>
+        <div class="info-block">
+            <img src="img/2.png" class="img" alt="">
+            <div class="text">
+                <span>Discover our events</span>
+                <p style="width: 554px;">Would you like to experience what it’s like to study in the Netherlands at NHL Stenden University of Applied Sciences? Meet our students and academic staff during our online and offine events!</p>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="text">
+                <span>Re-visit the Online Open Day </span>
+                <p style="width: 554px;">Did you miss our online International Open Day on 13 November? Over 500 future students joined the online event and they were calling in on their laptops, tablets, pcs and phones from Hungary, France, Germany, Italy, Hongkong and Vietnam
+                    amongst other places. You can still re-visit the online environment of the open day to watch the recordings and check out what else we prepared for you.</p>
+            </div>
+            <img src="img/3.png" class="img" alt="">
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>
