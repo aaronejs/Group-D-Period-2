@@ -11,11 +11,24 @@
       </div>
       <div class="boxItem">
         <h3>Start time</h3>
-        <input type="time" name="startTime" value="<?php echo $time;?>">
+        <input type="time" name="startTime" value="<?php if(isset($_POST['startTime'])){
+          $_SESSION['startTime'] = $_POST['startTime'];
+          echo $_SESSION['startTime'];
+        }else{
+          echo $time;
+        }?>">
       </div>
       <div class="boxItem">
         <h3>End time</h3>
-        <input type="time" name="endTime" value="<?php echo $time;?>">
+        <input type="time" name="endTime" value="<?php if(isset($_POST['endTime'])){
+          if($_POST['endTime'] < $_POST['startTime']){
+            echo $time;
+          }
+          $_SESSION['endTime'] = $_POST['endTime'];
+          echo $_SESSION['endTime'];
+        }else{
+          echo $time;
+        }?>">
       </div>
       <button class="searchButton" type="submit" name="submit">
         <img src="./resources/whiteSearch.png" id="searchImg">
