@@ -34,8 +34,9 @@ CREATE TABLE `booking` (
   `user_id` int(11) NOT NULL,
   `reserved_id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
-  `start_time` datetime NOT NULL,
-  `end_time` datetime NOT NULL
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
