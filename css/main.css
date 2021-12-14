@@ -137,6 +137,10 @@ main{
 }
 
 /* Index start */
+button {
+  border: none;
+}
+
 .searchBox {
   margin: 5em;
   height: 5em;
@@ -159,8 +163,6 @@ input[type=time], input[type=date] {
   background: #efefef;
 }
 .searchButton {
-  padding: 0px;
-  margin: 0px;
   height: 4em;
   width: 4em;
   border-radius: 3em;
@@ -172,9 +174,10 @@ input[type=time], input[type=date] {
   background-color: #005aaa;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 }
-#searchImg {
+.roundButtonImg {
   height: 2em;
   width: 2em;
+  filter: invert(1);
 }
 .bigBox {
   display: flex;
@@ -301,3 +304,31 @@ footer .content{
 }
 
 /* End of footer styling */
+
+
+input[type="file"] {
+  display: none;
+}
+
+.fileUploadButton {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.roundButton {
+  padding: 0px;
+  margin: 0px;
+  height: 4em;
+  width: 4em;
+  border-radius: 3em;
+  background-color: #005aaa;
+  transition-duration: 0.4s;
+}
+
+.roundButton:hover {
+  cursor: pointer;
+  background-color: #ccc;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}

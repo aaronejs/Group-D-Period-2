@@ -39,7 +39,7 @@
         }?>">
       </div>
       <button class="searchButton" type="submit" name="submit">
-        <img src="./resources/whiteSearch.png" id="searchImg">
+        <img src="./resources/Search.png" class="roundButtonImg">
       </button>
     </div>
   </form>
