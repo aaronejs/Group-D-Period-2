@@ -9,14 +9,52 @@
     <?php
       include './includes/header.php'; // Header
 			if(!isset($_SESSION['sessionID'])){
-				header("location:./login.php");
+				header("location:./login.php?error=login");
 			}
     ?>
 		<main>
 			<div class="bigBox">
 				<?php
+				$error = NULL;
+				$error2 = NULL;
 				include './includes/search.php';
+				include './includes/database.php';
+				include './includes/functions.php';
+
+				$sql = "SELECT * FROM booking WHERE (`date` = ?) AND (start_time <= ?) AND (end_time >= ?)"; //referencing logic to De Morgan's law
+				if(isset($_POST['startTime']) && isset($_POST['endTime'])){
+					if(validateTime($_POST['startTime']) && validateTime($_POST['endTime'])){
+						$startTime = $_POST['startTime'];
+						$endTime = $_POST['endTime'];
+					}
+				}
+				if($startTime < $endTime){
+					if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
+						mysqli_stmt_bind_param($stmt, "sss", $_POST['searchDate'], $_POST['endTime'], $_POST['startTime']); //bind the param to be the email from the form
+						if(!mysqli_stmt_execute($stmt)){ //execute the statement
+							$error = "Error executing query" . mysqli_error($conn);
+							die(); //die if we cant execute statement
+						}
+						mysqli_stmt_bind_result($stmt, $id, $user_id, $reserved_id, $room_id, $start_time, $end_time, $date);
+						mysqli_stmt_store_result($stmt);
+					}else{
+						$error = "Error: " . mysqli_error($conn);
+					}
+
+					if(mysqli_stmt_num_rows($stmt) != 0){
+						while(mysqli_stmt_fetch($stmt)){
+							echo $id;
+						}
+					}else{
+						$error = "No bookings!";
+					}
+				}else {
+					$error2 = "End time can not be bigger than start time!";
+				}
 				?>
+
+				<?= $error ?>
+				<?= $error2 ?>
 				<div class="mainItem">
 					<img src="./resources/map.png" alt="Map" class="reserveMap">
 					<div class="formReserve">
