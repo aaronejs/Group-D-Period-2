@@ -3,7 +3,6 @@
   padding: 0;
   font-family: sans-serif;
 }
-
 #container{
   width: 100%;
   height: auto;
@@ -15,17 +14,17 @@
                       "body"
                       "ftr";
 }
-
 a:link, a:visited, a:active {
   text-decoration: none;
   color: gray;
 }
-
 a:hover {
   text-decoration: none;
   color: black;
 }
-
+input[type="file"] {
+  display: none;
+}
 /*Header styling*/
 header{
   grid-area: hd;
@@ -140,7 +139,6 @@ main{
 button {
   border: none;
 }
-
 .searchBox {
   margin: 5em;
   height: 5em;
@@ -162,22 +160,32 @@ input[type=time], input[type=date] {
   border: none;
   background: #efefef;
 }
-.searchButton {
+.fileUploadButton {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.roundButton {
   height: 4em;
   width: 4em;
   border-radius: 3em;
   background-color: #005aaa;
   transition-duration: 0.4s;
 }
-.searchButton:hover {
+.roundButton:hover {
   cursor: pointer;
-  background-color: #005aaa;
+  background-color: #ccc;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 }
-.roundButtonImg {
+.roundButton img {
   height: 2em;
   width: 2em;
   filter: invert(1);
+  transition-duration: 0.4s;
+}
+.roundButton:hover img {
+  filter: invert(0);
 }
 .bigBox {
   display: flex;
@@ -194,6 +202,7 @@ input[type=time], input[type=date] {
 .mainItemText {
   width: 25em;
 }
+
 /* Index end */
 
 /* Reservation start */
@@ -275,12 +284,13 @@ input::-webkit-inner-spin-button {
 }
 input[type=number]:focus{
   outline:none;
-}​
+}
+
 /* Reservation end */
 
 /* end of body styling */
-/* footer styling */
 
+/* footer styling */
 footer{
   grid-area: ftr;
 }
@@ -320,31 +330,3 @@ footer .content{
 }
 
 /* End of footer styling */
-
-
-input[type="file"] {
-  display: none;
-}
-
-.fileUploadButton {
-  border: 1px solid #ccc;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-}
-
-.roundButton {
-  padding: 0px;
-  margin: 0px;
-  height: 4em;
-  width: 4em;
-  border-radius: 3em;
-  background-color: #005aaa;
-  transition-duration: 0.4s;
-}
-
-.roundButton:hover {
-  cursor: pointer;
-  background-color: #ccc;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-}

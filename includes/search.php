@@ -38,7 +38,7 @@
           echo $endTime;
         }?>">
       </div>
-      <button class="searchButton" type="submit" name="submit">
+      <button class="roundButton" type="submit" name="submit">
         <img src="./resources/Search.png" class="roundButtonImg">
       </button>
     </div>
