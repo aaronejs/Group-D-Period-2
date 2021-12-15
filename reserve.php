@@ -109,7 +109,7 @@
 	                    <div class="tab" id="room">
 	                        <span>Number of people</span>
 	                        <form method="post">
-														<input type="number" id="quantity" name="quantity" min="1" max="24"><br><br>
+														<input type="number" class="quantity" name="quantity" min="1" max="24" value="1">
 														<input type="submit" name="submit" value="Confirm">
 	                        </form>
 	                    </div>
