@@ -35,42 +35,43 @@
 						if(!mysqli_stmt_execute($stmt)){ //execute the statement
 							$error = "Error executing query" . mysqli_error($conn);
 							die(); //die if we cant execute statement
-						}
-						mysqli_stmt_bind_result($stmt, $id, $user_id, $reserved_id, $room_id, $start_time, $end_time, $date);
-						mysqli_stmt_store_result($stmt);
-					}else{
-						$error = "Error: " . mysqli_error($conn);
-					}
-					$availability1=$availability2=$availability3=$availability4=$availability5=$availability6=$availability7 = "roomSelect";
-					if(mysqli_stmt_num_rows($stmt) != 0){
-						while(mysqli_stmt_fetch($stmt)){
-							$array = str_split($room_id);
-							foreach ($array as $key) {
-								if($key == 1){
-									$availability1 = "roomNoSelect";
+						}else {
+							mysqli_stmt_bind_result($stmt, $id, $user_id, $reserved_id, $room_id, $start_time, $end_time, $date);
+							mysqli_stmt_store_result($stmt);
+							$availability1=$availability2=$availability3=$availability4=$availability5=$availability6=$availability7 = "roomSelect";
+							if(mysqli_stmt_num_rows($stmt) != 0){
+								while(mysqli_stmt_fetch($stmt)){
+									$array = str_split($room_id);
+									foreach ($array as $key) {
+										if($key == 1){
+											$availability1 = "roomNoSelect";
+										}
+										elseif($key == 2){
+											$availability2 = "roomNoSelect";
+										}
+										elseif($key == 3){
+											$availability3 = "roomNoSelect";
+										}
+										elseif($key == 4){
+											$availability4 = "roomNoSelect";
+										}
+										elseif($key == 5){
+											$availability5 = "roomNoSelect";
+										}
+										elseif($key == 6){
+											$availability6 = "roomNoSelect";
+										}
+										elseif($key == 7){
+											$availability7 = "roomNoSelect";
+										}
+									}
 								}
-								elseif($key == 2){
-									$availability2 = "roomNoSelect";
-								}
-								elseif($key == 3){
-									$availability3 = "roomNoSelect";
-								}
-								elseif($key == 4){
-									$availability4 = "roomNoSelect";
-								}
-								elseif($key == 5){
-									$availability5 = "roomNoSelect";
-								}
-								elseif($key == 6){
-									$availability6 = "roomNoSelect";
-								}
-								elseif($key == 7){
-									$availability7 = "roomNoSelect";
-								}
+							}else{
+								$error = "No bookings!";
 							}
 						}
 					}else{
-						$error = "No bookings!";
+						$error = "Error: " . mysqli_error($conn);
 					}
 				}else {
 					$error2 = "End time can not be bigger than start time!";
