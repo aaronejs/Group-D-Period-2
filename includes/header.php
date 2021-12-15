@@ -7,6 +7,7 @@
 <header>
   <?php
   session_start();
+  require_once './includes/remember.php'
   ?>
   <div class="content">
     <div class="logo">

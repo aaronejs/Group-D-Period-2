@@ -91,6 +91,7 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `user_type` varchar(64) NOT NULL default 'student',
   `vkey` varchar(255) NOT NULL,
+  `token` varchar(255),
   `verified` boolean NOT NULL default 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

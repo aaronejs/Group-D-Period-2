@@ -79,6 +79,22 @@
                                   $_SESSION['firstname'] = $firstname; //set session variables to use across pages
                                   $_SESSION['lastname'] = $lastname;
                                   $_SESSION['sessionID'] = $id;
+                                  if(isset($_POST['rememberLogin'])){
+                                    $sql = "UPDATE user set token = ? WHERE id = ?";
+                                    if($stmt = mysqli_prepare($conn, $sql)){
+                                      $token = time().$id;
+                                      mysqli_stmt_bind_param($stmt, "ss", $token, $id);
+                                      if(!mysqli_stmt_execute($stmt)){ //execute the statement
+                          							$error = "Error executing query" . mysqli_error($conn);
+                          							die();
+                                      }else{
+                                        $token = password_hash($token, PASSWORD_DEFAULT);
+                                        $hour = time() + 3600 * 24 * 30;
+                                        setcookie('userid', $id, $hour);
+                                        setcookie('token', $token, $hour);
+                                      }
+                                    }
+                                  }
                                   header("location:./index.php?success=login");
                                 }else{
                                   $error = "Account not verified!";
