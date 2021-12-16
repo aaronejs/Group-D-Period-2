@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>BookIT Stenden</title>
+  <title>File upload test</title>
 <!--
 </head>
 <body>

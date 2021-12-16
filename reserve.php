@@ -5,8 +5,6 @@
 		<link rel="stylesheet" type="text/css" href="./css/main.css">
 		<link rel="stylesheet" href="./css/room.css">
 		<title>Reservation</title>
-	</head>
-	<body>
     <?php
       include './includes/header.php'; // Header
 			if(!isset($_SESSION['sessionID'])){

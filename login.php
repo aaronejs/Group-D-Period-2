@@ -4,8 +4,6 @@
         <meta charset="utf-8">
         <title>Log In</title>
         <link rel="stylesheet" href="main.css">
-    </head>
-    <body>
         <?php
           include './includes/header.php'; // Header
           include './includes/database.php';
