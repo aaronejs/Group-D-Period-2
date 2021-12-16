@@ -1,6 +1,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/login.css">
+    <link rel="icon" type="image/x-icon" href="./resources/favicon.ico">
 </head>
 <body>
   <div id="container">
