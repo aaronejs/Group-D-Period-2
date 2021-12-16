@@ -14,6 +14,8 @@ if(isset($_COOKIE['userid']) && isset($_COOKIE['token'])){
             $_SESSION['firstname'] = $firstname; //set session variables to use across pages
             $_SESSION['lastname'] = $lastname;
             $_SESSION['sessionID'] = $id;
+          }else {
+            header("location:./logout.php");
           }
         }
       }
