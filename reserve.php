@@ -25,11 +25,16 @@
 					if(validateTime($_POST['startTime']) && validateTime($_POST['endTime'])){
 						$startTime = $_POST['startTime'];
 						$endTime = $_POST['endTime'];
+						$_SESSION['startTime'] = $startTime;
+						$_SESSION['endTime'] = $endTime;
+						$_SESSION['date'] = $_POST['searchDate'];
 					}
+				}else {
+					$error2 = "<br>Please choose a time and date!";
 				}
 				if($startTime < $endTime){
 					if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
-						mysqli_stmt_bind_param($stmt, "sss", $_POST['searchDate'], $_POST['endTime'], $_POST['startTime']); //bind the param to be the email from the form
+						mysqli_stmt_bind_param($stmt, "sss", $_POST['searchDate'], $endTime, $startTime); //bind the param to be the email from the form
 						if(!mysqli_stmt_execute($stmt)){ //execute the statement
 							$error = "Error executing query" . mysqli_error($conn);
 							die(); //die if we cant execute statement
@@ -41,6 +46,7 @@
 								while(mysqli_stmt_fetch($stmt)){
 									$array = str_split($room_id);
 									foreach ($array as $key) {
+
 										if($key == 1){
 											$availability1 = "roomNoSelect";
 										}
@@ -98,17 +104,44 @@
 	                   </svg>
 	                <img src="./resources/room.svg" alt="" class="bg-room">
 	            </div>
-	            <div class="room-params" id="params" style="display: none;">
+	            <div class="room-params" id="params" style="">
 	                <div class="tabs-btns">
 	                    <div class="tab-btn active" id="btn1">Room</div>
 	                    <div class="tab-btn" id="btn2">Equipment</div>
 	                </div>
 	                <div class="tabs">
 	                    <div class="tab" id="room">
-	                        <span>Number of people</span>
-	                        <form method="post">
-														<input type="number" class="quantity" name="quantity" min="1" max="24" value="1">
-														<input type="submit" name="submit" value="Confirm">
+
+	                        <form method="post" action="book.php">
+														<div>
+															Select Room
+															<select name="selectRoom" id="selectRoom">
+																<?php
+																$sql = "SELECT r.id, r.room_nr FROM room r WHERE r.id NOT IN (SELECT b.room_id FROM booking b WHERE (b.date = ?) AND (b.start_time <= ?) AND (b.end_time >= ?))";
+
+																if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
+																	mysqli_stmt_bind_param($stmt, "sss", $_POST['searchDate'], $endTime, $startTime); //bind the param to be the email from the form
+																	if(!mysqli_stmt_execute($stmt)){ //execute the statement
+																		$error = "Error executing query" . mysqli_error($conn);
+																		die(); //die if we cant execute statement
+																	}else {
+																		mysqli_stmt_bind_result($stmt, $room_id, $room_nr);
+																		mysqli_stmt_store_result($stmt);
+																		if(mysqli_stmt_num_rows($stmt) != 0){
+																			while(mysqli_stmt_fetch($stmt)){
+																				echo "<option value='$room_id'>1.0$room_nr</option>";
+																			}
+																		}
+																	}
+																}
+																?>
+															</select>
+														</div>
+														<div>
+															Number of people
+															<input type="number" class="quantity" name="quantity" min="1" max="24" value="1">
+															<input type="submit" name="submit" value="Confirm">
+														</div>
 	                        </form>
 	                    </div>
 	                    <div class="tab" id="equipment" style="display:none">
@@ -218,6 +251,7 @@
         <?php
             include './includes/footer.html'; // Footer
         ?>
-				<script src="room.js"></script>
+				 <!--- <script src="room.js"></script> --->
+
 	</body>
 </html>
