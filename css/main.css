@@ -330,3 +330,108 @@ footer .content{
 }
 
 /* End of footer styling */
+
+/* Profile page start */
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.profileColumn1 {
+  grid-column: 1;
+}
+
+.profileColumn1 img {
+  width: 300px;
+  height: 1000px;
+}
+
+.profileColumn3 img {
+  width: 300px;
+  height: 1000px;
+}
+
+.profileColumn2 {
+  grid-column: 2;
+  margin-left: 250px;
+}
+
+.profileColumn3 {
+  grid-column: -1;
+}
+
+.profileCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;;
+  align-items: center;
+} 
+
+.profileCenter img {
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+}
+
+.profileButton {
+  background: #005aaa;
+  height: 40px;
+  border-radius: 8px;
+  color: white;
+  font-size: 15px;
+  border: none;
+  
+}
+
+.buttonCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.profileInfo {
+  border: 1px solid gray;
+  border-radius: 7px;
+  padding: 15px;
+  color: gray;
+  width: 300px;
+  height: 30px;
+}
+
+.changePass {
+  border: 1px solid gray;
+  border-radius: 7px;
+  color: gray;
+  width: 300px;
+  height: 60px; 
+  margin-top: 0px;
+}
+
+.changePass:focus-within {
+  border-color: black;
+}
+.changePass:focus-within > legend {
+  color: black;
+}
+
+.profileCenter input[name=oldPassword], input[name=newPassword] {
+  font-size: 1.2em;
+  padding: 3px;
+  outline: none;
+  border: none; 
+  width: 100%;
+  background: none;
+  padding-top: 0px;
+}
+
+.profileCenter input[name=oldPassword], input[name=newPassword]:active{
+  background: none;
+}
+
+.profileText {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+/* Profile page end */
