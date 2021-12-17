@@ -77,6 +77,7 @@
                                   $_SESSION['firstname'] = $firstname; //set session variables to use across pages
                                   $_SESSION['lastname'] = $lastname;
                                   $_SESSION['sessionID'] = $id;
+                                  $_SESSION['email'] = $email;
                                   if(isset($_POST['rememberLogin'])){
                                     $sql = "UPDATE user set token = ? WHERE id = ?";
                                     if($stmt = mysqli_prepare($conn, $sql)){
