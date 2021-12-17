@@ -202,6 +202,20 @@ input[type=time], input[type=date] {
 .mainItemText {
   width: 25em;
 }
+.squareButton {
+  height: 2em;
+  width: 4em;
+  border-radius: 8px;
+  color: white;
+  background-color: #005aaa;
+  transition-duration: 0.4s;
+}
+.squareButton:hover {
+  cursor: pointer;
+  background-color: #ccc;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  color: black;
+}
 
 /* Index end */
 
