@@ -23,21 +23,15 @@
 					<h1 class="profileText">Personal Information</h1>
 					<fieldset class="profileInfo">
 						<legend>Name</legend>
-						<!-- <?php
-							/* Try to extract first & last name from the db
-          		include './includes/database.php';
-							$result = mysqli_query($conn,"SELECT * FROM user");
-							while ($row = mysql_fetch_array($result)) {
-							echo "<h1>{$row[’first_name’]} {$row[’last_name’]}</h1>"; } */
-						?> -->
+						<?php
+								echo $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+						?>
 					</fieldset>
 					<fieldset class="profileInfo">
 						<legend>Email</legend>
-							<!-- <?php
-								/* Try to extract email from the db
-								while ($row = mysql_fetch_array($result)) {
-								echo "<h1>{$row[’email’]}</h1>"; } */
-							?> -->
+							<?php
+								echo $_SESSION['email'];
+							?>
 					</fieldset>
 					<p><button type="submit" name="submit" value="submit" class="profileButton">Turn Off 2FA</button></p>
 				</div>
