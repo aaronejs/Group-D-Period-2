@@ -25,7 +25,6 @@
 					if(validateTime($_POST['startTime']) && validateTime($_POST['endTime'])){
 						$startTime = $_POST['startTime'];
 						$endTime = $_POST['endTime'];
-
 					}
 				}else {
 					$error2 = "<br>Please choose a time and date!";
@@ -46,7 +45,6 @@
 							if(mysqli_stmt_num_rows($stmt) != 0){
 								while(mysqli_stmt_fetch($stmt)){
 									$array = str_split($room_id);
-									var_dump($array);
 									foreach ($array as $key) {
 
 										if($key == 1){
