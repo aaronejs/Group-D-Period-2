@@ -25,9 +25,7 @@
 					if(validateTime($_POST['startTime']) && validateTime($_POST['endTime'])){
 						$startTime = $_POST['startTime'];
 						$endTime = $_POST['endTime'];
-						$_SESSION['startTime'] = $startTime;
-						$_SESSION['endTime'] = $endTime;
-						$_SESSION['date'] = $_POST['searchDate'];
+
 					}
 				}else {
 					$error2 = "<br>Please choose a time and date!";
@@ -42,9 +40,13 @@
 							mysqli_stmt_bind_result($stmt, $id, $user_id, $reserved_id, $room_id, $start_time, $end_time, $date);
 							mysqli_stmt_store_result($stmt);
 							$availability1=$availability2=$availability3=$availability4=$availability5=$availability6=$availability7 = "roomSelect";
+							$_SESSION['startTime'] = $startTime;
+							$_SESSION['endTime'] = $endTime;
+							$_SESSION['date'] = $_POST['searchDate'];
 							if(mysqli_stmt_num_rows($stmt) != 0){
 								while(mysqli_stmt_fetch($stmt)){
 									$array = str_split($room_id);
+									var_dump($array);
 									foreach ($array as $key) {
 
 										if($key == 1){
