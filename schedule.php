@@ -13,109 +13,74 @@
     header("location:./login.php?error=login");
   }
   ?>
-  <main>
-    <div class="schedule">
-      <div class="tableWeek">
-        <h1>WEEK 1</h1>
-      </div>
-      <div class="tableHeader">
-        <table>
-          <tr>
-            <th>SUNDAY</th>
-            <th>MONDAY</th>
-            <th>TUESDAY</th>
-            <th>WEDNESDAY</th>
-            <th>THURSDAY</th>
-            <th>FRIDAY</th>
-            <th>SATURDAY</th>
-          </tr>
-        </table>
-      </div>
-      <div class="tableContent">
-        <table>
-          <tr>
-            <td>
-              <h2>0.231</h2>
-              <p>IVAN IVANOV</p>
-              <p2>12:30 - 19:45</p2>
-            </td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-          </tr>
-          <tr>
-            <td>
-              <h2>0.231</h2>
-              <p>IVAN IVANOV</p>
-              <p2>12:30 - 19:45</p2>
-            </td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-          </tr>
-          <tr>
-            <td>
-              <h2>0.231</h2>
-              <p>IVAN IVANOV</p>
-              <p2>12:30 - 19:45</p2>
-            </td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-          </tr>
-          <tr>
-            <td>
-              <h2>0.231</h2>
-              <p>IVAN IVANOV</p>
-              <p2>12:30 - 19:45</p2>
-            </td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-          </tr>
-          <tr>
-            <td>
-              <h2>0.231</h2>
-              <p>IVAN IVANOV</p>
-              <p2>12:30 - 19:45</p2>
-            </td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-          </tr>
-          <tr>
-            <td>
-              <h2>0.231</h2>
-              <p>IVAN IVANOV</p>
-              <p2>12:30 - 19:45</p2>
-            </td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-          </tr>
-        </table>
-      </div>
+  <div class="schedule">
+          <div class="monday">
+            <p>monday</p>
+          </div>
+          <div class="tuesday">
+            <p>tuesday</p>
+          </div>
+          <div class="wednesday">
+            <p>wednesday</p>
+          </div>
+          <div class="thirstday">
+            <p>thirstday</p>
+          </div>
+          <div class="friday">
+            <p>friday</p>
+          </div>
+          <div class="saturday">
+            <p>saturday</p>
+          </div>
+          <div class="sunday">
+            <p>sunday</p>
+          </div>
 
-    </div>
-  </main>
+          <?php
+
+            /*function dayAssigner($fName,$lName,$roomNr,$startTime,$endTime){    It's gonna work at some point, trust
+              echo'
+                    <h5>'.$fName.' '.$lName.'</h5>
+                    <p>Room:'.$roomNr.'</p>
+                    <p>Time:'.$startTime.'-'.$endTime.'</p>
+                  ';
+            }*/
+
+            include './includes/database.php';
+            $sql="SELECT U.first_name, U.last_name, R.room_nr, B.start_time, B.end_time, B.date
+                  FROM booking B
+                  JOIN room R ON B.room_id=R.id
+                  JOIN user U ON B.user_id=U.id;";
+
+            if($stmt = mysqli_prepare($conn, $sql)){
+              mysqli_stmt_execute($stmt);
+              mysqli_stmt_bind_result($stmt,$fName,$lName,$roomNr,$startTime,$endTime,$date);
+              mysqli_stmt_store_result($stmt);
+              if(mysqli_stmt_num_rows($stmt) != 0){
+                while(mysqli_stmt_fetch($stmt)){
+                  $dayofweek = date('l', strtotime($date));
+                  
+                  if ($dayofweek=="Monday") {
+                    echo'
+                    <div class="monday">
+                    <h4>'.$fName.' '.$lName.'</h4>
+                    <p>Room: '.$roomNr.'</p>
+                    <p>Time: '.$startTime.' - '.$endTime.'</p> 
+                    </div>
+                    ';
+                  }
+
+                }
+              }
+              else{
+                  echo "nothing to show";
+                }
+            }
+            else{
+              echo"beep boop db error";
+            }
+          ?>
+        </div>
   <?php
   include './includes/footer.html'; // footer
   ?>
