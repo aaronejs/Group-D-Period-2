@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <title>BookIT Stenden</title>
-<!--
+  <?php include './includes/head.html'; ?>
 </head>
-<body>
--->
+<body>    
     <?php
     include './includes/header.php'; // header
     ?>
@@ -40,6 +39,5 @@
     <?php
     include './includes/footer.html'; // footer
     ?>
-  </div>
 </body>
 </html>

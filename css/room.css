@@ -166,7 +166,7 @@
 .tab#room .count .plus {
     cursor: pointer;
 }
-
+ /*This is for javascript I think, please explain what this does*/
 #room_1,
 #room_2,
 #room_3,

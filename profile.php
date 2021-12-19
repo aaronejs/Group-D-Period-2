@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Profile Page</title>
-		<link rel="stylesheet" type="text/css" href="main.css">
-	</head>
-	<body>
-        <?php
-          include './includes/header.php'; // Header
-          include './includes/remember.php'; 
-    		?>
-    	<div class="profileGrid">
+<head>
+	<title>Profile Page</title>
+	<?php include './includes/head.html'; ?>
+</head>
+<body>
+    <?php
+      	include './includes/header.php'; // Header
+        include './includes/remember.php'; 
+    ?>
+	<main>	
+		<div class="profileGrid">
 			<div class="profileColumn1">
 				<img src="./resources/design.png" alt="Colored arrows">
 			</div>
@@ -60,8 +60,9 @@
 				<img src="./resources/design1.png" alt="Colored arrows">
 			</div>
 		</div>
-       <?php
-        	include './includes/footer.html'; // Footer
-        ?>
-	</body>
+	</main>
+	<?php
+		include './includes/footer.html'; // Footer
+	?>
+</body>
 </html>

@@ -1,13 +1,16 @@
 <!doctype html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Log In</title>
-        <link rel="stylesheet" href="main.css">
-        <?php
-          include './includes/header.php'; // Header
-          include './includes/database.php';
-        ?>
+<head>
+  <title>Log In</title>
+    <?php
+    include './includes/head.html';
+    include './includes/database.php';
+    ?>
+</head>
+<body>
+    <?php
+    include './includes/header.php'; // header
+    ?>
         <main>
           <div class="center">
             <div class="formBox">

@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>File upload test</title>
-<!--
+    <title>File upload test</title>
+    <?php
+    	include './includes/head.html';
+    ?>
 </head>
 <body>
--->
     <?php
-    include './includes/header.php'; // header
+    include './includes/header.php';
+    if(!isset($_SESSION['sessionID'])) {
+        header("location:./login.php?error=login");
+    }
     ?>
     <main>
         <div class="bigBox">
@@ -26,6 +30,5 @@
     <?php
     include './includes/footer.html'; // footer
     ?>
-  </div>
 </body>
 </html>
