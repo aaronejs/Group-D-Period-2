@@ -21,7 +21,7 @@
                     <input type="file" name="fileUpload" id="fileUpload">
                     <p>Upload file</p>
                 </label>
-                <button type="submit" class="roundButton">
+                <button type="submit" class="roundButton" name="submit">
                     <img src="./resources/UploadImage.png" class="roundButtonImg" alt="Upload Image">
                 </button>
             </form>
