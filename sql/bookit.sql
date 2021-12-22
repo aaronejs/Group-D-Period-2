@@ -34,6 +34,7 @@ CREATE TABLE `booking` (
   `user_id` int(11) NOT NULL,
   `reserved_id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
+  `occupancy` int(11) NOT NULL,
   `start_time` time NOT NULL,
   `end_time` time NOT NULL,
   `date` date NOT NULL
