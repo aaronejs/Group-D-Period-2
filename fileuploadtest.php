@@ -16,12 +16,12 @@
     <main>
         <div class="bigBox">
             <h1>File upload test</h1>
-            <form action="./fileuploadtest.php" method="post">
+            <form action="./uploadfile.php" method="post" enctype="multipart/form-data">
                 <label for="fileUpload" class="fileUploadButton">
                     <input type="file" name="fileUpload" id="fileUpload">
                     <p>Upload file</p>
                 </label>
-                <button type="submit" class="roundButton">
+                <button type="submit" class="roundButton" name="submit">
                     <img src="./resources/UploadImage.png" class="roundButtonImg" alt="Upload Image">
                 </button>
             </form>

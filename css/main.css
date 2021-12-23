@@ -104,7 +104,7 @@ main{
 
 .monday{
   grid-column: 1/2;
-  
+
 }
 .tuesday{
   grid-column: 2/3;
@@ -112,23 +112,23 @@ main{
 }
 .wednesday{
   grid-column: 3/4;
-  
+
 }
 .thirstday{
   grid-column: 4/5;
-  
+
 }
 .friday{
   grid-column: 5/6;
-  
+
 }
 .saturday{
   grid-column: 6/7;
-  
+
 }
 .sunday{
   grid-column: 7/8;
-  
+
 }
 /* Schedule end */
 
@@ -280,7 +280,7 @@ input[type=time], input[type=date] {
   margin-bottom: 100px;
   margin-top: 10px;
 }
-.quantity{
+.occupancy{
   border: none;
   background: #E7E7E7;
   font-size: 1em;
@@ -288,7 +288,7 @@ input[type=time], input[type=date] {
   margin-bottom: 1em;
   margin-top: 1em;
 }
-.quantity input::-webkit-outer-spin-button,
+.occupancy input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   padding: .8em;
   box-shadow:0 0 2px gray;
@@ -609,7 +609,7 @@ input[type=submit]{
   flex-direction: column;
   justify-content: center;;
   align-items: center;
-} 
+}
 .profileCenter img {
   border-radius: 50%;
   width: 300px;
@@ -622,7 +622,7 @@ input[type=submit]{
   color: white;
   font-size: 15px;
   border: none;
-  
+
 }
 .buttonCenter {
   display: flex;
@@ -641,7 +641,7 @@ input[type=submit]{
   border-radius: 7px;
   color: gray;
   width: 300px;
-  height: 60px; 
+  height: 60px;
   margin-top: 0px;
 }
 .changePass:focus-within {
@@ -654,7 +654,7 @@ input[type=submit]{
   font-size: 1.2em;
   padding: 3px;
   outline: none;
-  border: none; 
+  border: none;
   width: 100%;
   background: none;
   padding-top: 0px;
