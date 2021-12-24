@@ -18,7 +18,7 @@
                   <h2>Welcome</h2>
                 </div>
                 <div class="contentText">
-                  <h1>Verify</h1>
+                  <h1>Enter the code from your emaik</h1>
                 </div>
                 <div class="form">
                   <form method="post">
