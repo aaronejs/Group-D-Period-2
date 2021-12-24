@@ -1,6 +1,6 @@
 <?php 
 session_start();
-
+include './includes/functions.php';
 if(isset($_POST['submit'])) {
     if($_FILES["fileUpload"]["size"] < 10000000) {      //checks if filesize is less than 10mb
         $uploadFileType = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $_FILES["fileUpload"]["tmp_name"]);
@@ -15,10 +15,22 @@ if(isset($_POST['submit'])) {
                     echo "<br>";
                     $valuesArray = explode(";", $line);
                     $room = $valuesArray[0];
+                    // if(validateTime($valuesArray[1])) { THE CHECKS DON'T WORK FOR SOME REASON?
                     $startTime = $valuesArray[1];
+                    // }
+                    // else {
+                    //     var_dump($valuesArray[1]);
+                    // }
+                    //if(validateTime($valuesArray[2])) {
                     $endTime = $valuesArray[2];
-                    $datetemp = $valuesArray[3];
-                    $date = substr($datetemp, 6, 4) . "-" . substr($datetemp, 3, 2)  . "-" . substr($datetemp, 0, 2);
+                    //}
+                    // else {
+                    //     var_dump($valuesArray[2]);
+                    // }
+                    if(validateDate($valuesArray[3])) {
+                        $datetemp = $valuesArray[3];
+                        $date = substr($datetemp, 6, 4) . "-" . substr($datetemp, 3, 2)  . "-" . substr($datetemp, 0, 2);
+                    }
                     $occupancy = $valuesArray[4];
                     if(is_numeric($occupancy)) {    //Checks if occupancy is numeric so first line in array is ignored
                         echo $room . " " . $startTime . " " . $endTime . " " . $date . " " . $occupancy . " ";

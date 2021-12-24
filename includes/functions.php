@@ -13,4 +13,19 @@ function validateTime($time){
     $result = false;
   return $result;
 }
+
+function validateDate($date){
+  $arrayDate = explode("-", $date);
+  $day = intval($arrayDate[0]);
+  $month = intval($arrayDate[1]);
+  $year = intval($arrayDate[2]);
+
+  if(checkdate($month, $day, $year)) {
+    $valid = true;
+  }
+  else{
+    $valid = false;
+  }
+  return $valid;
+}
 ?>
