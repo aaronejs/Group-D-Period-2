@@ -119,19 +119,19 @@
 								Select Room
 								<select name="selectRoom" id="selectRoom">
 									<?php
-									$sql = "SELECT r.id, r.room_nr FROM room r WHERE r.id NOT IN (SELECT b.room_id FROM booking b WHERE (b.date = ?) AND (b.start_time <= ?) AND (b.end_time >= ?))";
+									$sql = "SELECT r.id, r.floor_nr, r.room_nr FROM room r WHERE r.id NOT IN (SELECT b.room_id FROM booking b WHERE (b.date = ?) AND (b.start_time <= ?) AND (b.end_time >= ?))";
 
 									if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
 										mysqli_stmt_bind_param($stmt, "sss", $_POST['searchDate'], $endTime, $startTime); //bind the param to be the email from the form
 										if(!mysqli_stmt_execute($stmt)){ //execute the statement
 											$error = "Error executing query" . mysqli_error($conn);
-											die(); //die if we cant execute statement
+											die($error); //die if we cant execute statement
 										}else {
-											mysqli_stmt_bind_result($stmt, $room_id, $room_nr);
+											mysqli_stmt_bind_result($stmt, $room_id, $floor_nr, $room_nr);
 											mysqli_stmt_store_result($stmt);
 											if(mysqli_stmt_num_rows($stmt) != 0){
 												while(mysqli_stmt_fetch($stmt)){
-													echo "<option value='$room_id'>1.0$room_nr</option>";
+													echo "<option value='" . $room_id . "'>" . $floor_nr . ".0" . $room_nr . "</option>";
 												}
 											}
 										}
