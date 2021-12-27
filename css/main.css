@@ -25,9 +25,9 @@ a:hover {
 input[type="file"] {
   display: none;
 }
-.errorMessage {
+.warning{
+  margin-top: 1em;
   color: red;
-  padding-top: 2em;
 }
 /*Header styling*/
 header{
@@ -577,10 +577,6 @@ input[type=submit]{
   height: 60px;
   border-radius: 8px;
   color: white;
-}
-.warning{
-  margin-top: 1em;
-  color: red;
 }
 .success{
   margin-top: 1em;
