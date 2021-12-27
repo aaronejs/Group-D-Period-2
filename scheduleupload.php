@@ -36,16 +36,21 @@
             <?php
             if(isset($_GET['error'])) {
                 if($_GET['error'] == 'how') {
-                    echo "How did we get here?";
+                    echo "<p class='warning'>How did we get here?</p>";
                 }
                 if($_GET['error'] == 'upload') {
-                    echo "Please upload a file before pressing the upload button.";
+                    echo "<p class='warning'>Please upload a file before pressing the upload button.</p>";
                 }
                 if($_GET['error'] == 'size') {
-                    echo "Please make sure the size of the file is less than 10Mb!";
+                    echo "<p class='warning'>Please make sure the size of the file is less than 10Mb!</p>";
                 }
                 if($_GET['error'] == 'type') {
-                    echo "Please make sure the file is a .csv file.";
+                    echo "<p class='warning'>Please make sure the file is a .csv file.</p>";
+                }
+            }
+            if(isset($_GET['success'])) {
+                if($_GET['success'] == 'upload') {
+                    echo "<p class='success'>Upload successful!</p>";
                 }
             }
             ?>

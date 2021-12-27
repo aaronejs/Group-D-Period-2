@@ -78,6 +78,7 @@ if(isset($_POST['submit'])) {
                             }
                         }
                     }
+                    header('location:./scheduleupload.php?success=upload');
                 }
                 else{
                     echo "Error: " . $_FILES["fileUpload"]["error"] . "<br />";
