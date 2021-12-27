@@ -11,6 +11,11 @@
     <main>
       <div class="bigBox">
       <?php
+      if(isset($_GET['error'])) {
+        if($_GET['error'] == 'type') {
+          echo "<p class='errorMessage'>You do not have access to that page.</p>";
+        }
+      }
 			include './includes/search.php';
 			?>
         <div class="mainItem">

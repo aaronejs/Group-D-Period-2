@@ -14,6 +14,13 @@
       <div class="pages">
         <a href="schedule.php"><h2>Schedule</h2></a>
       </div>
+      <?php
+      if(isset($_SESSION['type'])) {
+        if($_SESSION['type'] == 'admin') {
+          echo "<div class='pages'><a href='scheduleupload.php'><h2>Upload Schedule</h2></a></div>";
+        }
+      }
+      ?>
       <div class="userInfo">
         <?php
         if(isset($_SESSION['firstname']) && isset($_SESSION['lastname'])){

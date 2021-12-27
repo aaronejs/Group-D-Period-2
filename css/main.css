@@ -25,6 +25,10 @@ a:hover {
 input[type="file"] {
   display: none;
 }
+.errorMessage {
+  color: red;
+  padding-top: 2em;
+}
 /*Header styling*/
 header{
   grid-area: hd;
@@ -201,7 +205,10 @@ input[type=time], input[type=date] {
 }
 .squareButton {
   height: 2em;
-  width: 4em;
+  width: auto;
+  padding-left: .5em;
+  padding-right: .5em;
+  margin-bottom: 0.25em;
   border-radius: 8px;
   color: white;
   background-color: #005aaa;
