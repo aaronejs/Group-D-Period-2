@@ -18,63 +18,65 @@ if(isset($_POST['submit'])) {
                     foreach($linesArray as $line) {
                         echo "<br>";
                         $valuesArray = explode(";", $line);
-                        $room = $valuesArray[0];
-                        // if(validateTime($valuesArray[1])) { THE CHECKS DON'T WORK FOR SOME REASON?
-                        $startTime = $valuesArray[1];
-                        // }
-                        // else {
-                        //     var_dump($valuesArray[1]);
-                        // }
-                        //if(validateTime($valuesArray[2])) {
-                        $endTime = $valuesArray[2];
-                        //}
-                        // else {
-                        //     var_dump($valuesArray[2]);
-                        // }
-                        if(validateDate($valuesArray[3])) {
-                            $datetemp = $valuesArray[3];
-                            $date = substr($datetemp, 6, 4) . "-" . substr($datetemp, 3, 2)  . "-" . substr($datetemp, 0, 2);
-                        }
-                        $occupancy = $valuesArray[4];
-                        if(is_numeric($occupancy)) {    //Checks if occupancy is numeric so first line in array is ignored
-                            echo $room . " " . $startTime . " " . $endTime . " " . $date . " " . $occupancy . " ";
-                            $floorNr = intval(substr($room, 0, 1));
-                            $roomNr = intval(substr($room, 2, 5));
-                            //VALIDATION work in progress!!!!!!!!!!!!!!!!!!!!!
-                            $sql = "SELECT id FROM room WHERE room_nr = ? AND floor_nr = ?";
-                            
-                            if($stmt = mysqli_prepare($conn, $sql)) {
-                                mysqli_stmt_bind_param($stmt, "ss", $roomNr, $floorNr);
-                                if(mysqli_stmt_execute($stmt)) {
-                                    mysqli_stmt_bind_result($stmt, $roomId);
-                                    mysqli_stmt_store_result($stmt);
-                                    if(mysqli_stmt_num_rows($stmt) != 0) {
-                                        while(mysqli_stmt_fetch($stmt)) {
-                                            echo $roomId;
+                        if(count($valuesArray) == 5) {      //checks if expected amount of values is present
+                            $room = $valuesArray[0];
+                            // if(validateTime($valuesArray[1])) { THE CHECKS DON'T WORK FOR SOME REASON?
+                            $startTime = $valuesArray[1];
+                            // }
+                            // else {
+                            //     var_dump($valuesArray[1]);
+                            // }
+                            //if(validateTime($valuesArray[2])) {
+                            $endTime = $valuesArray[2];
+                            //}
+                            // else {
+                            //     var_dump($valuesArray[2]);
+                            // }
+                            if(validateDate($valuesArray[3])) {
+                                $datetemp = $valuesArray[3];
+                                $date = substr($datetemp, 6, 4) . "-" . substr($datetemp, 3, 2)  . "-" . substr($datetemp, 0, 2);
+                            }
+                            $occupancy = $valuesArray[4];
+                            if(is_numeric($occupancy)) {    //Checks if occupancy is numeric so first line in array is ignored
+                                echo $room . " " . $startTime . " " . $endTime . " " . $date . " " . $occupancy . " ";
+                                $floorNr = intval(substr($room, 0, 1));
+                                $roomNr = intval(substr($room, 2, 5));
+                                //VALIDATION work in progress!!!!!!!!!!!!!!!!!!!!!
+                                $sql = "SELECT id FROM room WHERE room_nr = ? AND floor_nr = ?";
+                                
+                                if($stmt = mysqli_prepare($conn, $sql)) {
+                                    mysqli_stmt_bind_param($stmt, "ss", $roomNr, $floorNr);
+                                    if(mysqli_stmt_execute($stmt)) {
+                                        mysqli_stmt_bind_result($stmt, $roomId);
+                                        mysqli_stmt_store_result($stmt);
+                                        if(mysqli_stmt_num_rows($stmt) != 0) {
+                                            while(mysqli_stmt_fetch($stmt)) {
+                                                echo $roomId;
+                                            }
+                                            echo "<br>";
                                         }
-                                        echo "<br>";
+                                        else{
+                                            echo "Room does not exist";
+                                        }
                                     }
                                     else{
-                                        echo "Room does not exist";
+                                        $error = "Error: " . mysqli_error($conn);
+                                        die($error);
                                     }
+                                    mysqli_stmt_close($stmt);
                                 }
-                                else{
-                                    $error = "Error: " . mysqli_error($conn);
-                                    die($error);
+                                
+                                $sql = "INSERT INTO booking (user_id, room_id, occupancy, start_time, end_time, date) VALUES (?,?,?,?,?,?)";
+                                
+                                if($stmt = mysqli_prepare($conn, $sql)) {
+                                    mysqli_stmt_bind_param($stmt, "ssssss", $_SESSION['sessionID'], $roomId, $occupancy, $startTime, $endTime, $date);
+                                    if(!mysqli_stmt_execute($stmt)) {
+                                        $error = "Error: " . mysqli_error($conn);
+                                        die($error);
+                                    }
+                                    echo " Added booking";
+                                    mysqli_stmt_close($stmt);
                                 }
-                                mysqli_stmt_close($stmt);
-                            }
-                            
-                            $sql = "INSERT INTO booking (user_id, room_id, occupancy, start_time, end_time, date) VALUES (?,?,?,?,?,?)";
-                            
-                            if($stmt = mysqli_prepare($conn, $sql)) {
-                                mysqli_stmt_bind_param($stmt, "ssssss", $_SESSION['sessionID'], $roomId, $occupancy, $startTime, $endTime, $date);
-                                if(!mysqli_stmt_execute($stmt)) {
-                                    $error = "Error: " . mysqli_error($conn);
-                                    die($error);
-                                }
-                                echo " Added booking";
-                                mysqli_stmt_close($stmt);
                             }
                         }
                     }

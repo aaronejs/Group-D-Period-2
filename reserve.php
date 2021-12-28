@@ -131,7 +131,17 @@
 											mysqli_stmt_store_result($stmt);
 											if(mysqli_stmt_num_rows($stmt) != 0){
 												while(mysqli_stmt_fetch($stmt)){
-													echo "<option value='" . $room_id . "'>" . $floor_nr . ".0" . $room_nr . "</option>";
+													$zeros = strlen($room_nr);
+													if($zeros == 1) {
+														$zero = "00";
+													}
+													elseif($zeros == 2) {
+														$zero = "0";
+													}
+													else{
+														$zero = "";
+													}
+													echo "<option value='" . $room_id . "'>" . $floor_nr . "." . $zero . "" . $room_nr . "</option>";
 												}
 											}
 										}
