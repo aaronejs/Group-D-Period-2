@@ -15,6 +15,12 @@
         if($_GET['error'] == 'type') {
           echo "<p class='warning'>You do not have access to that page.</p>";
         }
+        if($_GET['error'] == 'login') {
+          echo "<p class='warning'>You are already logged in!</p>";
+        }
+        if($_GET['error'] == 'register') {
+          echo "<p class='warning'>Please log out before registering another account.</p>";
+        }
       }
 			include './includes/search.php';
 			?>

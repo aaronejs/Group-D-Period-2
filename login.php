@@ -10,6 +10,9 @@
 <body>
     <?php
     include './includes/header.php'; // header
+    if(isset($_SESSION['sessionID'])) {
+      header('location:./index.php?error=login');
+    }
     ?>
         <main>
           <div class="center">

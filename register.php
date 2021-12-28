@@ -11,6 +11,9 @@
 <body>
   <?php
     include './includes/header.php'; // Header
+    if(isset($_SESSION['sessionID'])) {
+      header('location:./index.php?error=register');
+    }
   ?>
     <main>
       <div class="center">

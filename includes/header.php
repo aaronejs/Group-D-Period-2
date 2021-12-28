@@ -17,14 +17,14 @@
       <?php
       if(isset($_SESSION['type'])) {
         if($_SESSION['type'] == 'admin') {
-          echo "<div class='pages'><a href='scheduleupload.php'><h2>Upload Schedule</h2></a></div>";
+          echo "<div class='pages'><a href='./scheduleupload.php'><h2>Upload Schedule</h2></a></div>";
         }
       }
       ?>
       <div class="userInfo">
         <?php
         if(isset($_SESSION['firstname']) && isset($_SESSION['lastname'])){
-          echo "<p><h2>" . $_SESSION['firstname'] . "&nbsp;" . $_SESSION['lastname'] . "</h2></p>";
+          echo "<a href='./profile.php'><p><h2>" . $_SESSION['firstname'] . "&nbsp;" . $_SESSION['lastname'] . "</h2></p></a>";
           echo "<p><a href='./logout.php'>Logout</a></p>";
         }else{
           echo "<p><a href='./login.php'>Login</a></p>";
