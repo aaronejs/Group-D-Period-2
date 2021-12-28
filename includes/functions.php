@@ -21,11 +21,11 @@ function validateDate($date){
   $year = intval($arrayDate[2]);
 
   if(checkdate($month, $day, $year)) {
-    $valid = true;
+    $result = true;
   }
   else{
-    $valid = false;
+    $result = false;
   }
-  return $valid;
+  return $result;
 }
 ?>
