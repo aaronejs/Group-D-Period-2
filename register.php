@@ -79,7 +79,7 @@
                       }
                       mysqli_stmt_store_result($stmt);
                       $emailHandle = substr($_POST['email'], strpos($_POST['email'], "@") + 1); //take a substring from email input
-                      if (str_contains($emailHandle, 'nhlstenden')) { //if string contains 'nhlstenden' continue
+                      if (str_contains($emailHandle, 'nhlstenden.com')) { //if string contains 'nhlstenden' continue
                         if(mysqli_stmt_num_rows($stmt) == 0){ //if we get back no results then continue
                           if (str_contains($emailHandle, 'student')) {
                             $type = "student";

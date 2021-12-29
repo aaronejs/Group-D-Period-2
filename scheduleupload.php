@@ -18,7 +18,7 @@
     ?>
     <main>
         <div class="bigBox">
-            <h1>File upload test</h1>
+            <h1>Upload schedule</h1>
             <a href="./download/scheduleTemplate.xlsx" download>
                 <button class="smallSquareButton" >
                     <p>Download template</p>
