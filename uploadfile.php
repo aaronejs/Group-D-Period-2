@@ -15,6 +15,9 @@ if(isset($_POST['submit'])) {
                     echo "<br>";
                     $linesArray = file($_FILES["fileUpload"]["tmp_name"], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);   //gets temporary file path and retrieves file contents per line (array)
                     include './includes/database.php';
+                    $errorNo = 0;
+                    $existsNo = 0;
+                    $attemptsNo = 0;
                     foreach($linesArray as $line) {
                         echo "<br>";
                         $valuesArray = explode(";", $line);
@@ -38,7 +41,8 @@ if(isset($_POST['submit'])) {
                             }
                             $occupancy = $valuesArray[4];
                             if(is_numeric($occupancy)) {    //Checks if occupancy is numeric so first line in array is ignored
-                                echo $room . " " . $startTime . " " . $endTime . " " . $date . " " . $occupancy . " ";
+                                $attemptsNo++;
+                                echo $room . " " . $startTime . " " . $endTime . " " . $date . " " . $occupancy . " ";  //testing purposes
                                 $floorNr = intval(substr($room, 0, 1));
                                 $roomNr = intval(substr($room, 2, 5));
                                 //VALIDATION work in progress!!!!!!!!!!!!!!!!!!!!!
@@ -57,6 +61,29 @@ if(isset($_POST['submit'])) {
                                         }
                                         else{
                                             echo "Room does not exist";
+                                            $existsNo++;
+                                            mysqli_stmt_close($stmt);
+                                            continue;
+                                        }
+                                    }
+                                    else{
+                                        $error = "Error: " . mysqli_error($conn);
+                                        die($error);
+                                    }
+                                    mysqli_stmt_close($stmt);
+                                }
+
+                                $sql = "SELECT id FROM booking WHERE room_id = ? AND (`date` = ?) AND (start_time <= ?) AND (end_time >= ?)";   //checks if room is available for selected time
+                                
+                                if($stmt = mysqli_prepare($conn, $sql)) {
+                                    mysqli_stmt_bind_param($stmt, "ssss", $roomId, $date, $endTime, $startTime);
+                                    if(mysqli_stmt_execute($stmt)) {
+                                        mysqli_stmt_bind_result($stmt, $bookingId);
+                                        mysqli_stmt_store_result($stmt);
+                                        if(mysqli_stmt_num_rows($stmt) != 0) {
+                                            $errorNo++;
+                                            mysqli_stmt_close($stmt);
+                                            continue;
                                         }
                                     }
                                     else{
@@ -80,7 +107,7 @@ if(isset($_POST['submit'])) {
                             }
                         }
                     }
-                    header('location:./scheduleupload.php?success=upload');
+                    header('location:./scheduleupload.php?success=upload&error=' . $errorNo . '&exists=' . $existsNo . '&attempts=' . $attemptsNo);
                 }
                 else{
                     echo "Error: " . $_FILES["fileUpload"]["error"] . "<br />";

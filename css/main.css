@@ -203,7 +203,7 @@ input[type=time], input[type=date] {
 .mainItemText {
   width: 25em;
 }
-.squareButton {
+.smallSquareButton {
   height: 2em;
   width: auto;
   padding-left: .5em;
@@ -214,7 +214,7 @@ input[type=time], input[type=date] {
   background-color: #005aaa;
   transition-duration: 0.4s;
 }
-.squareButton:hover {
+.smallSquareButton:hover {
   cursor: pointer;
   background-color: #ccc;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);

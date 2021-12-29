@@ -35,7 +35,7 @@
           <img src="./resources/Traveling.png">
           <div class="mainItemText">
             <h1>Discover our events</h1>
-            <p>Would you like to experience what it’s like to study in the Netherlands at NHL Stenden University of Applied Sciences? Meet our students and academic staff during our online and offine events! </br><a href="https://www.nhlstenden.com/en/events" target="_blank"><button class="squareButton">Events</button></a></p>
+            <p>Would you like to experience what it’s like to study in the Netherlands at NHL Stenden University of Applied Sciences? Meet our students and academic staff during our online and offine events! </br><a href="https://www.nhlstenden.com/en/events" target="_blank"><button class="smallSquareButton">Events</button></a></p>
           </div>
         </div>
         <div class="mainItem">
