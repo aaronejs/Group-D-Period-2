@@ -303,6 +303,14 @@ input::-webkit-inner-spin-button {
 input[type=number]:focus{
   outline:none;
 }
+.items{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.items input[type=number]{
+  margin-left: auto;
+}
 /* Reservation end */
 
 /* Room start */

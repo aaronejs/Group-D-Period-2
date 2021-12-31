@@ -114,7 +114,7 @@
 				<div class="tabs">
 					<div class="tab" id="room">
 
-						<form method="post" action="book.php">
+						<form method="post" action="book.php" style="display:none">
 							<div>
 								Select Room
 								<select name="selectRoom" id="selectRoom">
@@ -156,94 +156,34 @@
 							</div>
 						</form>
 					</div>
-					<div class="tab" id="equipment" style="display:none">
-						<div class="select-equipment">
-							<span>Select equipment</span>
-							<div class="item">
-								<div class="checkbox">
-									<input id="Laptop" type="checkbox" name="check" value="check1">
-									<label for="Laptop"></label>
-								</div>
-								<span>Laptop</span>
-								<div class="count" id="0">
-									<div class="minus">-</div>
-									<div class="number">0</div>
-									<div class="plus">+</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="checkbox">
-									<input id="Extension" type="checkbox" name="check" value="check1">
-									<label for="Extension"></label>
-								</div>
-								<span>Extension cable</span>
-								<div class="count" id="1">
-									<div class="minus">-</div>
-									<div class="number">0</div>
-									<div class="plus">+</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="checkbox">
-									<input id="TV" type="checkbox" name="check" value="check1">
-									<label for="TV"></label>
-								</div>
-								<span>TV</span>
-								<div class="count" id="2">
-									<div class="minus">-</div>
-									<div class="number">0</div>
-									<div class="plus">+</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="checkbox">
-									<input id="Teapot" type="checkbox" name="check" value="check1">
-									<label for="Teapot"></label>
-								</div>
-								<span>Teapot</span>
-								<div class="count" id="3">
-									<div class="minus">-</div>
-									<div class="number">0</div>
-									<div class="plus">+</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="checkbox">
-									<input id="Adapter" type="checkbox" name="check" value="check1">
-									<label for="Adapter"></label>
-								</div>
-								<span>Adapter</span>
-								<div class="count" id="4">
-									<div class="minus">-</div>
-									<div class="number">0</div>
-									<div class="plus">+</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="checkbox">
-									<input id="Adapter2" type="checkbox" name="check" value="check1">
-									<label for="Adapter2"></label>
-								</div>
-								<span>Adapter</span>
-								<div class="count" id="5">
-									<div class="minus">-</div>
-									<div class="number">0</div>
-									<div class="plus">+</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="checkbox">
-									<input id="Adapter3" type="checkbox" name="check" value="check1">
-									<label for="Adapter3"></label>
-								</div>
-								<span>Adapter</span>
-								<div class="count" id="6">
-									<div class="minus">-</div>
-									<div class="number">0</div>
-									<div class="plus">+</div>
-								</div>
-							</div>
+					<div class="tab" id="equipment" style="">
+						<div class="">
+							<p>Select items</p>
 						</div>
+						<form action="items.php" method="post">
+							<?php
+							$sql = "SELECT id, item_name, quantity FROM item";
+							if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
+								if(!mysqli_stmt_execute($stmt)){ //execute the statement
+									$error = "Error executing query" . mysqli_error($conn);
+									die($error); //die if we cant execute statement
+								}else {
+									mysqli_stmt_bind_result($stmt, $item_id, $item_name, $item_quantity);
+									mysqli_stmt_store_result($stmt);
+									if(mysqli_stmt_num_rows($stmt) != 0){
+										while(mysqli_stmt_fetch($stmt)){
+											echo "<div class='items'>";
+											echo "<input type='checkbox' name=$item_name value=$item_name>";
+											echo "$item_name";
+											echo "<input type='number' class='occupancy' name='$item_name _amount' min='1' max='$item_quantity' value='1'>";
+											echo "</div>";
+										}
+									}
+								}
+							}
+							?>
+							<input type="submit" name="submit" value="Confirm">
+						</form>
 					</div>
 
 				</div>
