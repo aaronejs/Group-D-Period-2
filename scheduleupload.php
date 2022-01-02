@@ -17,8 +17,8 @@
     }
     ?>
     <main>
-        <div class="bigBox">
-            <h1>Upload schedule</h1>
+        <div class="upload">
+            <h1>Upload Schedule</h1>
             <a href="./download/scheduleTemplate.xlsx" download>
                 <button class="smallSquareButton" >
                     <p>Download template</p>
@@ -33,6 +33,25 @@
                     <img src="./resources/UploadImage.png" class="roundButtonImg" alt="Upload Image">
                 </button>
             </form>
+            <div class="mainItem">
+                <div class="mainItemText">
+                    <h2>How to?</h2>
+                    <p>You can upload your schedule below. Use the download button below to download the template. The only accepted file type is <b>.csv</b>.</p>
+                </div>
+                <img src="./resources/Relaxing.png" alt="Generic image">
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             <?php
             if(isset($_GET['error'])) {
                 if($_GET['error'] == 'how') {
