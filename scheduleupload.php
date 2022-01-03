@@ -18,25 +18,26 @@
     ?>
     <main>
         <div class="upload">
-            <h1>Upload Schedule</h1>
-            <a href="./download/scheduleTemplate.xlsx" download>
-                <button class="smallSquareButton" >
-                    <p>Download template</p>
-                </button>
-            </a>
-            <form action="./uploadfile.php" method="post" enctype="multipart/form-data">
-                <label for="fileUpload" class="fileUploadButton">
-                    <input type="file" name="fileUpload" id="fileUpload" required>
-                    <p>Upload file</p>
-                </label>
-                <button type="submit" class="roundButton" name="submit">
-                    <img src="./resources/UploadImage.png" class="roundButtonImg" alt="Upload Image">
-                </button>
-            </form>
+            <div class="uploadBox">
+                <a href="./download/scheduleTemplate.xlsx" download>
+                    <button class="smallSquareButton" id="downloadButton">
+                        <p>Download template</p>
+                    </button>
+                </a>
+                <form action="./uploadfile.php" method="post" enctype="multipart/form-data">
+                    <label for="fileUpload" class="fileUploadButton">
+                        <input type="file" name="fileUpload" id="fileUpload" required>
+                        <p>Upload file</p>
+                    </label>
+                    <button type="submit" class="roundButton" name="submit">
+                        <img src="./resources/UploadImage.png" class="roundButtonImg" alt="Upload Image">
+                    </button>
+                </form>
+            </div>
             <div class="mainItem">
                 <div class="mainItemText">
                     <h2>How to?</h2>
-                    <p>You can upload your schedule below. Use the download button below to download the template. The only accepted file type is <b>.csv</b>.</p>
+                    <p>You can upload your schedule below. Use the download button at the top of the page to download the template.<br>The only accepted file type is <b>.csv</b>.</p>
                 </div>
                 <img src="./resources/Relaxing.png" alt="Generic image">
             </div>
