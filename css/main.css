@@ -264,13 +264,13 @@ input[type=time], input[type=date] {
 @keyframes uploadButton {
   0% {
     visibility: hidden;
-    right: 40%;
+    transform: translate(0, 0)
   }
   100% {
     background-color: transparent;
     visibility: visible;
     opacity: 100%;
-    right: 46%;
+    transform: translate(-100%, 0);
   }
 }
 @keyframes uploadBar {
