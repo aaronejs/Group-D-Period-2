@@ -37,22 +37,10 @@
             <div class="mainItem">
                 <div class="mainItemText">
                     <h2>How to?</h2>
-                    <p>You can upload your schedule below. Use the download button at the top of the page to download the template.<br>The only accepted file type is <b>.csv</b>.</p>
+                    <p>You can upload your schedule below. Use the download button at the top of the page to download the template. When you have filled in all bookings, export the file to a <b>.csv</b> file. Any other file type will not work.<br><i>The only accepted file type is <b>.csv</b>.</i></p>
                 </div>
                 <img src="./resources/Relaxing.png" alt="Generic image">
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <?php
             if(isset($_GET['error'])) {
                 if($_GET['error'] == 'how') {
@@ -65,7 +53,7 @@
                     echo "<p class='warning'>Please make sure the size of the file is less than 10Mb!</p>";
                 }
                 if($_GET['error'] == 'type') {
-                    echo "<p class='warning'>Please make sure the file is a .csv file.</p>";
+                    echo "<p class='warning'>Please make sure the uploaded file is a .csv file.</p>";
                 }
             }
             if(isset($_GET['success'])) {
