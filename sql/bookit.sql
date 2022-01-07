@@ -60,6 +60,7 @@ CREATE TABLE `item` (
 
 CREATE TABLE `reserved_item` (
   `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `amount_reserved` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -121,7 +122,7 @@ ALTER TABLE `item`
 ALTER TABLE `reserved_item`
   ADD PRIMARY KEY (`id`),
   ADD KEY `item_id` (`item_id`);
-
+  ADD KEY `user_id` (`user_id`),
 --
 -- Indexes for table `room`
 --
@@ -185,6 +186,7 @@ ALTER TABLE `booking`
 --
 ALTER TABLE `reserved_item`
   ADD CONSTRAINT `reserved_item_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`);
+  ADD CONSTRAINT `reserved_item_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
@@ -192,5 +194,5 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
-CREATE TABLE `bookit`.`factor` 
+CREATE TABLE `bookit`.`factor`
     ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL , `code` INT NOT NULL , `date` DATETIME NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
