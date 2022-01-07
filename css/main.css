@@ -386,11 +386,13 @@ input[type=time], input[type=date] {
   padding: .5em;
   margin-bottom: 1em;
   margin-top: 1em;
+  width: 5em;
 }
 .occupancy input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   padding: .8em;
   box-shadow:0 0 2px gray;
+  opacity: 1;
 }
 input[type=number]:focus{
   outline:none;
@@ -399,6 +401,7 @@ input[type=number]:focus{
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  height: 2em;
 }
 .items input[type=number]{
   margin-left: auto;
