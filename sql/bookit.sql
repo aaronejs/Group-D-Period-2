@@ -121,8 +121,9 @@ ALTER TABLE `item`
 --
 ALTER TABLE `reserved_item`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `item_id` (`item_id`);
   ADD KEY `user_id` (`user_id`),
+  ADD KEY `item_id` (`item_id`);
+
 --
 -- Indexes for table `room`
 --
@@ -185,7 +186,7 @@ ALTER TABLE `booking`
 -- Constraints for table `reserved_item`
 --
 ALTER TABLE `reserved_item`
-  ADD CONSTRAINT `reserved_item_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`);
+  ADD CONSTRAINT `reserved_item_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`),
   ADD CONSTRAINT `reserved_item_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
