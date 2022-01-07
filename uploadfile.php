@@ -3,6 +3,7 @@ session_start();
 if(!isset($_SESSION['sessionID'])) {
     header("location:./login.php?error=login");
 }
+date_default_timezone_set('Europe/Amsterdam');
 include './includes/functions.php';
 if(isset($_POST['submit'])) {
     if(file_exists($_FILES['fileUpload']['tmp_name']) || is_uploaded_file($_FILES['fileUpload']['tmp_name'])) {
@@ -14,30 +15,40 @@ if(isset($_POST['submit'])) {
                     echo $_FILES["fileUpload"]["tmp_name"];
                     echo "<br>";
                     $linesArray = file($_FILES["fileUpload"]["tmp_name"], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);   //gets temporary file path and retrieves file contents per line (array)
-                    include './includes/database.php';
-                    $errorNo = 0;
-                    $existsNo = 0;
-                    $attemptsNo = 0;
-                    foreach($linesArray as $line) {
+                    include './includes/database.php';      //database connection
+                    $errorNo = 0;                           //sets number of errors to 0 before loop starts
+                    $existsNo = 0;                          //number of rooms unavailable at that time
+                    $attemptsNo = 0;                        //number of attempts
+                    $dateNo = 0;                            //number of dates set to tommorows date due to error +-line 45
+                    foreach($linesArray as $line) {         //every line of file in array
                         echo "<br>";
-                        $valuesArray = explode(";", $line);
+                        $valuesArray = explode(";", $line); //every value of line in array
                         if(count($valuesArray) == 5) {      //checks if expected amount of values is present
-                            $room = $valuesArray[0];
-                            // if(validateTime($valuesArray[1])) { THE CHECKS DON'T WORK FOR SOME REASON?
+                            if(filter_var($valuesArray[0], FILTER_VALIDATE_FLOAT)) {
+                                $room = $valuesArray[0];
+                            }
+                            else{
+                                $room = filter_var($valuesArray[0], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                            }
+                            // if(validateTime($valuesArray[1])) { 
                             $startTime = $valuesArray[1];
                             // }
-                            // else {
+                            // else{
                             //     var_dump($valuesArray[1]);
                             // }
-                            //if(validateTime($valuesArray[2])) {
+                            // if(validateTime($valuesArray[2])) {
                             $endTime = $valuesArray[2];
-                            //}
-                            // else {
+                            // }
+                            // else{
                             //     var_dump($valuesArray[2]);
                             // }
                             if(validateDate($valuesArray[3])) {
                                 $datetemp = $valuesArray[3];
                                 $date = substr($datetemp, 6, 4) . "-" . substr($datetemp, 3, 2)  . "-" . substr($datetemp, 0, 2);
+                            }
+                            else{
+                                $date = date('Y-m') . "-" . date("d")+1;
+                                $dateNo++;                  //errors related to incorrect date
                             }
                             $occupancy = $valuesArray[4];
                             if(is_numeric($occupancy)) {    //Checks if occupancy is numeric so first line in array is ignored
@@ -61,7 +72,7 @@ if(isset($_POST['submit'])) {
                                         }
                                         else{
                                             echo "Room does not exist";
-                                            $existsNo++;
+                                            $existsNo++;                //errors related to room not existing
                                             mysqli_stmt_close($stmt);
                                             continue;
                                         }
@@ -81,7 +92,7 @@ if(isset($_POST['submit'])) {
                                         mysqli_stmt_bind_result($stmt, $bookingId);
                                         mysqli_stmt_store_result($stmt);
                                         if(mysqli_stmt_num_rows($stmt) != 0) {
-                                            $errorNo++;
+                                            $errorNo++;                 //errors related to room not being available at that time
                                             mysqli_stmt_close($stmt);
                                             continue;
                                         }
@@ -107,7 +118,7 @@ if(isset($_POST['submit'])) {
                             }
                         }
                     }
-                    header('location:./scheduleupload.php?success=upload&error=' . $errorNo . '&exists=' . $existsNo . '&attempts=' . $attemptsNo);
+                    header('location:./scheduleupload.php?success=upload&error=' . $errorNo . '&exists=' . $existsNo . '&attempts=' . $attemptsNo . '&date=' . $dateNo);
                 }
                 else{
                     echo "Error: " . $_FILES["fileUpload"]["error"] . "<br />";

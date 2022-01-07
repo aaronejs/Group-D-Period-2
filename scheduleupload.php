@@ -61,15 +61,19 @@
                     echo "<p class='success'>Upload successful!</p>";
                 }
             }
-            if(isset($_GET['exists']) && isset($_GET['attempts']) && isset($_GET['error'])) {
-                if(is_numeric($_GET['exists']) && is_numeric($_GET['attempts']) && is_numeric($_GET['error'])) {
+            if(isset($_GET['exists']) && isset($_GET['attempts']) && isset($_GET['error']) && isset($_GET['date'])) {
+                if(is_numeric($_GET['exists']) && is_numeric($_GET['attempts']) && is_numeric($_GET['error']) && is_numeric($_GET['date'])) {
                     if($_GET['error'] != 0 || $_GET['exists'] != 0) {
                         echo "<p class='warning'>" . $_GET['error'] + $_GET['exists'] . " out of " . $_GET['attempts'] . " bookings was / were not uploaded.</p>";
-                        if($_GET['error'] >=1) {
+                        if($_GET['error'] >= 1) {
                             echo "<p class='warning'>" . $_GET['error'] . " rooms were unavailable, please try again with another room.</p>";
                         }
                         if($_GET['exists'] >= 1) {
                             echo "<p class='warning'>" . $_GET['exists'] . " of the " . $_GET['attempts'] . " rooms you entered do / does not exist.";
+                            echo "<p class='warning'>If you believe the room should exist, please contact us via email.</p>";
+                        }
+                        if($_GET['date'] >= 1) {
+                            echo "<p class='warning'>" . $_GET['date'] . " booking(s) did not have a correct date assigned to it, we booked that room for tomorrows date if that room was available.</p>";
                         }
                         echo "<p class='warning'>You can check your bookings in the booking section of your profile page to see which bookings were uploaded.</p>";
                     }
