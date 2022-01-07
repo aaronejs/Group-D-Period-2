@@ -122,7 +122,7 @@
 									$sql = "SELECT r.id, r.floor_nr, r.room_nr FROM room r WHERE r.id NOT IN (SELECT b.room_id FROM booking b WHERE (b.date = ?) AND (b.start_time <= ?) AND (b.end_time >= ?))";
 
 									if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
-										mysqli_stmt_bind_param($stmt, "sss", $_POST['searchDate'], $endTime, $startTime); //bind the param to be the email from the form
+										mysqli_stmt_bind_param($stmt, "sss", $_POST['searchDate'], $endTime, $startTime);
 										if(!mysqli_stmt_execute($stmt)){ //execute the statement
 											$error = "Error executing query" . mysqli_error($conn);
 											die($error); //die if we cant execute statement
@@ -158,13 +158,48 @@
 					</div>
 					<div class="tab" id="equipment" style="">
 						<div class="">
-							<p>Select items</p>
+							<p><b>Select items</b></p>
 						</div>
 						<form action="items.php" method="post">
-							<?php
+						<?php
+							$sql = "SELECT b.id, r.room_nr, r.floor_nr, b.date FROM booking b, room r WHERE b.user_id = ? AND r.id = b.room_id";
+
+							if($stmt = mysqli_prepare($conn, $sql)){
+								mysqli_stmt_bind_param($stmt, "s", $_SESSION['sessionID']);
+								if(!mysqli_stmt_execute($stmt)){
+									$error = "Error executing query" . mysqli_error($conn);
+									die($error); //die if we cant execute statement
+								}else {
+									mysqli_stmt_bind_result($stmt, $booking_id, $a_room_nr, $a_floor_nr, $booking_date);
+									mysqli_stmt_store_result($stmt);
+									if(mysqli_stmt_num_rows($stmt) != 0){
+
+										echo "<div class='items'>";
+										echo "Add items to a booking:";
+										echo "</div><div class='items'>";
+										echo "<select name='selectItems' id='selectItem'>";
+										echo "<option selected='selected' value='NULL'>Book separately</option>";
+										while(mysqli_stmt_fetch($stmt)){
+											$zeros = strlen($room_nr);
+											if($zeros == 1) {
+												$zero = "00";
+											}
+											elseif($zeros == 2) {
+												$zero = "0";
+											}
+											else{
+												$zero = "";
+											}
+											echo "<option value='" . $booking_id . "'>" . "Room nr: " . $a_floor_nr . "." . $zero . "" . $a_room_nr . " Date: " . $booking_date . "</option>";
+										}
+										echo "</select>";
+										echo "</div>";
+									}
+								}
+							}
 							$sql = "SELECT id, item_name, quantity FROM item";
-							if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
-								if(!mysqli_stmt_execute($stmt)){ //execute the statement
+							if($stmt = mysqli_prepare($conn, $sql)){
+								if(!mysqli_stmt_execute($stmt)){
 									$error = "Error executing query" . mysqli_error($conn);
 									die($error); //die if we cant execute statement
 								}else {
@@ -175,14 +210,14 @@
 											echo "<div class='items'>";
 											echo "<input type='checkbox' name=$item_name value=$item_name>";
 											echo "$item_name";
-											echo "<input type='number' class='occupancy' name='$item_name _amount' min='1' max='$item_quantity' value='1'>";
+											echo "<input type='number' class='occupancy' name=" . "$item_name" . "_amount" ."' min='1' max='$item_quantity' value='1'>";
 											echo "</div>";
 										}
 									}
 								}
 							}
 							?>
-							<input type="submit" name="submit" value="Confirm">
+							<input type="submit" name="submit" value="Confirm" class="submit">
 						</form>
 					</div>
 

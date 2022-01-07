@@ -406,6 +406,9 @@ input[type=number]:focus{
 .items input[type=number]{
   margin-left: auto;
 }
+.submit{
+  margin-top: 1em;
+}
 /* Reservation end */
 
 /* Room start */
