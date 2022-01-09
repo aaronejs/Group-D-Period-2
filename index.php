@@ -22,6 +22,14 @@
           echo "<p class='warning'>Please log out before registering another account.</p>";
         }
       }
+      if(isset($_GET['success'])) {
+        if($_GET['success'] == 'login') {
+          echo "<p class='success'>You are now logged into the service!</p>";
+        }
+        if($_GET['success'] == 'logout') {
+          echo "<p class='warning'>You are now logged out of the service.</p>";
+        }
+      }
 			include './includes/search.php';
 			?>
         <div class="mainItem">

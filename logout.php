@@ -1,5 +1,10 @@
 <?php
 session_start();
 session_destroy();
-header("location:./index.php");
+if(isset($_COOKIE['userid']) && isset($_COOKIE['token'])) {
+    $hour = time() - 5;
+    setcookie('userid', "", $hour);
+    setcookie('token', "", $hour);
+}
+header("location:./index.php?success=logout");
 ?>
