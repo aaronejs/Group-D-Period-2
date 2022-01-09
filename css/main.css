@@ -769,6 +769,31 @@ input[type=submit]{
 }
 /* Profile page end */
 
+/* Thank you page start */
+.thankYouCenter {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 200px;
+}
+
+.thankYou {
+  font-size: 60px;
+}
+
+.returnToLogin {
+  font-size: 25px;
+  margin-top: 20px;
+}
+
+.thankYouImg {
+  height: 250px;
+  width: 1520px;
+  margin-top: 150px;
+}
+/* Thank you page end */
+
 /* end of body styling */
 
 /* footer styling */
