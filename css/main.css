@@ -278,39 +278,30 @@ input[type=time], input[type=date] {
   padding: .5em 1em;
   cursor: pointer;
   margin-right: .5em;
+  transition-duration: 0.4s;
 }
 .fileUploadButton:hover {
-  animation: uploadBar 0.4s  ease-in-out both;
+  background-color: #ccc;
+  padding-left: 16em;
+  border-radius: 8px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
 }
 #fileUpload {
   visibility: hidden;
   opacity: 0%;
   position: absolute;
+  transition-duration: 0.4s;
+  height: 0px;
+  width: 0px;
 }
-#fileUpload:hover {
-  display: flex;
+.fileUploadButton:hover #fileUpload {
   cursor: pointer;
-  animation: uploadButton 0.4s  ease-in-out both;
-}
-@keyframes uploadButton {
-  0% {
-    visibility: hidden;
-    transform: translate(0, 0)
-  }
-  100% {
-    background-color: transparent;
-    visibility: visible;
-    opacity: 100%;
-    transform: translate(-100%, 0);
-  }
-}
-@keyframes uploadBar {
-  100% {
-    background-color: #ccc;
-    padding-left: 16em;
-    border-radius: 8px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
-  }
+  background-color: transparent;
+  visibility: visible;
+  opacity: 100%;
+  transform: translate(-100%, 0);
+  height: auto;
+  width: auto;
 }
 
 /* Schedule upload end */
