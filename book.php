@@ -23,7 +23,11 @@ if(isset($_POST['submit'])){
         }
       }
     }
+  }else {
+    header("location: ./reserve.php?error=unsetfields");
   }
+}else {
+  header("location: ./index.php");
 }
 
 ?>
