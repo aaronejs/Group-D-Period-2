@@ -197,20 +197,20 @@
 									}
 								}
 							}
-							$sql = "SELECT id, item_name, quantity FROM item";
+							$sql = "SELECT i.id, i.item_name, i.quantity, SUM(r.amount_reserved) FROM item i LEFT JOIN reserved_item r on i.id=r.item_id GROUP BY i.id";
 							if($stmt = mysqli_prepare($conn, $sql)){
 								if(!mysqli_stmt_execute($stmt)){
 									$error = "Error executing query" . mysqli_error($conn);
 									die($error); //die if we cant execute statement
 								}else {
-									mysqli_stmt_bind_result($stmt, $item_id, $item_name, $item_quantity);
+									mysqli_stmt_bind_result($stmt, $item_id, $item_name, $item_quantity, $amount_reserved);
 									mysqli_stmt_store_result($stmt);
 									if(mysqli_stmt_num_rows($stmt) != 0){
 										while(mysqli_stmt_fetch($stmt)){
 											echo "<div class='items'>";
 											echo "<input type='checkbox' name=$item_name value=$item_name>";
 											echo "$item_name";
-											echo "<input type='number' class='occupancy' name=" . "$item_name" . "_amount" ."' min='1' max='$item_quantity' value='1'>";
+											echo "<input type='number' class='occupancy' name=" . "$item_name" . "_amount" ."' min='1' max='" .$item_quantity - $amount_reserved ."' value='1'>";
 											echo "</div>";
 										}
 									}
