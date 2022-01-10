@@ -177,13 +177,15 @@
 								}else {
 									mysqli_stmt_bind_result($stmt, $booking_id, $a_room_nr, $a_floor_nr, $booking_date);
 									mysqli_stmt_store_result($stmt);
-									if(mysqli_stmt_num_rows($stmt) != 0){
-
-										echo "<div class='items'>";
-										echo "Add items to a booking:";
-										echo "</div><div class='items'>";
-										echo "<select name='selectItems' id='selectItem'>";
-										echo "<option selected='selected' value='NULL'>Book separately</option>";
+									echo "<div class='items'>";
+									echo "Add items to a booking:";
+									echo "</div><div class='items'>";
+									echo "<select name='selectItems' id='selectItem'>";
+									echo "<option selected='selected' value='NULL'>Book separately</option>";
+									if(mysqli_stmt_num_rows($stmt) == 0){
+										echo "</select>";
+										echo "</div>";
+									}else{
 										while(mysqli_stmt_fetch($stmt)){
 											$zeros = strlen($room_nr);
 											if($zeros == 1) {
@@ -213,9 +215,9 @@
 									if(mysqli_stmt_num_rows($stmt) != 0){
 										while(mysqli_stmt_fetch($stmt)){
 											echo "<div class='items'>";
-											echo "<input type='checkbox' name=$item_name value=$item_name>";
+											echo "<input type='checkbox' name=$item_name value=$item_id>";
 											echo "$item_name";
-											echo "<input type='number' class='occupancy' name=" . "$item_name" . "_amount" ."' min='1' max='" .$item_quantity - $amount_reserved ."' value='1'>";
+											echo "<input type='number' class='occupancy' name='" . "$item_id" . "_amount" ."' min='1' max='" .$item_quantity - $amount_reserved ."' value='1'>";
 											echo "</div>";
 										}
 									}
