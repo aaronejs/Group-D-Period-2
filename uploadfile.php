@@ -19,40 +19,23 @@ if(isset($_POST['submit'])) {
                     $errorNo = 0;                           //sets number of errors to 0 before loop starts
                     $existsNo = 0;                          //number of rooms unavailable at that time
                     $attemptsNo = 0;                        //number of attempts
-                    $dateNo = 0;                            //number of dates set to tommorows date due to error +-line 45
                     foreach($linesArray as $line) {         //every line of file in array
                         echo "<br>";
                         $valuesArray = explode(";", $line); //every value of line in array
                         if(count($valuesArray) == 5) {      //checks if expected amount of values is present
-                            if(filter_var($valuesArray[0], FILTER_VALIDATE_FLOAT)) {
-                                $room = $valuesArray[0];
-                            }
-                            else{
-                                $room = filter_var($valuesArray[0], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                            }
-                            // if(validateTime($valuesArray[1])) { 
-                            $startTime = $valuesArray[1];
-                            // }
-                            // else{
-                            //     var_dump($valuesArray[1]);
-                            // }
-                            // if(validateTime($valuesArray[2])) {
-                            $endTime = $valuesArray[2];
-                            // }
-                            // else{
-                            //     var_dump($valuesArray[2]);
-                            // }
-                            if(validateDate($valuesArray[3])) {
+                            if(is_numeric($valuesArray[4]) && validateTime($valuesArray[1]) && validateTime($valuesArray[2]) && validateDate($valuesArray[3])) {    //Checks if occupancy is numeric so first line in array is ignored and so lines are ignored that have incorrect values.
+                                $attemptsNo++;
+                                if(filter_var($valuesArray[0], FILTER_VALIDATE_FLOAT)) {
+                                    $room = $valuesArray[0];
+                                }
+                                else{
+                                    $room = filter_var($valuesArray[0], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);      //corrects accidental letters and such (rooms with letters are not supported currently)
+                                }
+                                $startTime = $valuesArray[1];
+                                $endTime = $valuesArray[2];
                                 $datetemp = $valuesArray[3];
                                 $date = substr($datetemp, 6, 4) . "-" . substr($datetemp, 3, 2)  . "-" . substr($datetemp, 0, 2);
-                            }
-                            else{
-                                $date = date('Y-m') . "-" . date("d")+1;
-                                $dateNo++;                  //errors related to incorrect date
-                            }
-                            $occupancy = $valuesArray[4];
-                            if(is_numeric($occupancy)) {    //Checks if occupancy is numeric so first line in array is ignored
-                                $attemptsNo++;
+                                $occupancy = $valuesArray[4];
                                 echo $room . " " . $startTime . " " . $endTime . " " . $date . " " . $occupancy . " ";  //testing purposes
                                 $floorNr = intval(substr($room, 0, 1));
                                 $roomNr = intval(substr($room, 2, 5));
@@ -116,9 +99,12 @@ if(isset($_POST['submit'])) {
                                     mysqli_stmt_close($stmt);
                                 }
                             }
+                            else{
+                                continue;
+                            }
                         }
                     }
-                    header('location:./scheduleupload.php?success=upload&error=' . $errorNo . '&exists=' . $existsNo . '&attempts=' . $attemptsNo . '&date=' . $dateNo);
+                    header('location:./scheduleupload.php?success=upload&error=' . $errorNo . '&exists=' . $existsNo . '&attempts=' . $attemptsNo);
                 }
                 else{
                     echo "Error: " . $_FILES["fileUpload"]["error"] . "<br />";
