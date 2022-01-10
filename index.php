@@ -4,7 +4,7 @@
   <title>BookIT Stenden</title>
   <?php include './includes/head.html'; ?>
 </head>
-<body>    
+<body>
     <?php
     include './includes/header.php'; // header
     ?>
@@ -15,10 +15,10 @@
         if($_GET['error'] == 'type') {
           echo "<p class='warning'>You do not have access to that page.</p>";
         }
-        if($_GET['error'] == 'login') {
+        elseif($_GET['error'] == 'login') {
           echo "<p class='warning'>You are already logged in!</p>";
         }
-        if($_GET['error'] == 'register') {
+        elseif($_GET['error'] == 'register') {
           echo "<p class='warning'>Please log out before registering another account.</p>";
         }
       }
@@ -26,8 +26,11 @@
         if($_GET['success'] == 'login') {
           echo "<p class='success'>You are now logged into the service!</p>";
         }
-        if($_GET['success'] == 'logout') {
+        elseif($_GET['success'] == 'logout') {
           echo "<p class='warning'>You are now logged out of the service.</p>";
+        }
+        elseif($_GET['success'] == 'booked') {
+          echo "<p class='success'>Room booked successfully!</p>";
         }
       }
 			include './includes/search.php';
