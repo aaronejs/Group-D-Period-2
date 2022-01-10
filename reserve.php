@@ -114,7 +114,7 @@
 				<div class="tabs">
 					<div class="tab" id="room">
 
-						<form method="post" action="book.php" style="display:none">
+						<form method="post" action="book.php" style="">
 							<div>
 								Select Room
 								<select name="selectRoom" id="selectRoom">
@@ -156,7 +156,7 @@
 							</div>
 						</form>
 					</div>
-					<div class="tab" id="equipment" style="">
+					<div class="tab" id="equipment" style="display:none">
 						<div class="">
 							<p><b>Select items</b></p>
 						</div>
@@ -238,7 +238,7 @@
 	<?php
 		include './includes/footer.html'; // Footer
 	?>
-				<!--- <script src="room.js"></script> --->
+				<script src="room.js"></script>
 
 </body>
 </html>
