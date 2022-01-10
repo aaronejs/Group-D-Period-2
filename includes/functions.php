@@ -4,8 +4,8 @@ function validateTime($time){
   $sub2 = substr($time, 2, 1);
   $sub3 = substr($time, -2, 2);
 
-  if($sub2 == ":"){
-    if(preg_match('/^[1-9][0-9]*$/', $sub1) && preg_match('/^[1-9][0-9]*$/', $sub3)){
+  if($sub2 == ":" && $sub1 <= 24 && $sub3 <= 59){
+    if(preg_match('/^[0-9][0-9]*$/', $sub1) && preg_match('/^[0-9][0-9]*$/', $sub3)){
       $result = true;
     }else
       $result = false;
