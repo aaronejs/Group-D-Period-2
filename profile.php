@@ -114,6 +114,7 @@
 						} 
 					?>
 				</div>
+			</div>
 			<div class="profileColumn3">
 				<img src="./resources/design1.png" alt="Colored arrows">
 			</div>
