@@ -29,7 +29,12 @@
 					$endTime = $_POST['endTime'];
 				}
 			}else {
-				$error2 = "<br>Please choose a time and date!";
+				if(isset($_GET['error'])) {
+					if($_GET['error'] == 'unsetfields') {
+	          echo "<p class='warning'>Please fill in all fields!</p>";
+	        }
+				}
+				$error2 = "<br><p>Please choose a time and date!</p>";
 			}
 			if($startTime < $endTime){
 				if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
@@ -73,7 +78,7 @@
 								}
 							}
 						}else{
-							$error = "No bookings!";
+							$error = "<p>No bookings!</p>";
 						}
 					}
 				}else{
@@ -220,7 +225,6 @@
 							<input type="submit" name="submit" value="Confirm" class="submit">
 						</form>
 					</div>
-
 				</div>
 			</div>
 		</div>
