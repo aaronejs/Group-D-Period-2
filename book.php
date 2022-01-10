@@ -3,7 +3,7 @@ include './includes/database.php';
 session_start();
 
 if(isset($_POST['submit'])){
-  if(!empty($_POST['selectRoom']) && !empty($_POST['quantity'])){
+  if(!empty($_POST['selectRoom']) && !empty($_POST['occupancy'])){
     $room_id = filter_var($_POST['selectRoom'], FILTER_SANITIZE_NUMBER_INT);
     $occupancy = filter_var($_POST['occupancy'], FILTER_SANITIZE_NUMBER_INT);
     $startTime = $_SESSION['startTime'];
@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
           $error = "Error executing query" . mysqli_error($conn);
           die($error); //die if we cant execute statement
         }else{
-          header("location:./reserve.php?success=booked");
+          header("location:./index.php?success=booked");
         }
       }
     }
