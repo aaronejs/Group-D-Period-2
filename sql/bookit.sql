@@ -92,7 +92,6 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `2FA` int(11) NOT NULL,
-  `2FA_code` int(11) NOT NULL,
   `user_type` varchar(64) NOT NULL default 'student',
   `vkey` varchar(255) NOT NULL,
   `token` varchar(255),
