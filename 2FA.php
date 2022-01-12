@@ -14,26 +14,22 @@
 
     if (isset($_POST['code'])) {
       if($_POST['code'] == $_SESSION['token_factor']) {
-        var_dump(111); 
+        var_dump(111);
         header("location:./index.php?success=login");
       } else {
-        var_dump(11155); 
+        var_dump(11155);
         header("location:./login.php");
       }
     } else {
       $mrand = rand(1000, 9999);
       $_SESSION['token_factor'] = $mrand;
-      
+
       $to      = 'nobody@example.com';
       $subject = 'the subject';
       $message = 'hello';
 
       mail($to, $subject, $message, $headers);
       //СГЕНЕРИТЬ РАНДОМНОЕ ЧИСЛО И ЗАПИ[НУТЬ В СЕССИОН
-      <INSERT>J 
-      #endregion
-      </INSERT>
-
       //ОТПРАВИТЬ ЕГО ПО ИМЕЙЛУ
 
     }
