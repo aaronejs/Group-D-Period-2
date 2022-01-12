@@ -45,8 +45,8 @@
 
         if(isset($_POST['additem'])){
           if(!empty($_POST['Iname']) && !empty($_POST['Iquan'])){
-            $Item_Name = $_GET['Iname'];
-            $Quantity = $_GET['Iquan'];
+            $Item_Name = $_POST['Iname'];
+            $Quantity = $_POST['Iquan'];
             $sql = "INSERT INTO Item (user_id, $Item_Name, $Quantity)
                     VALUES (?,?,?)";
             if($stmt = mysqli_prepare($conn, $sql)){ 
