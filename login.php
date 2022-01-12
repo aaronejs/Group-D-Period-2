@@ -64,6 +64,8 @@
                 }elseif(isset($_GET['error'])){
                   if($_GET['error'] == "login"){
                     echo "<div class='warning'>Please log in to use the service!</div>";
+                  }elseif ($_GET['error'] == "2FA") {
+                    echo "<div class='warning'>2FA code invalid!</div>";
                   }
                 }
                 if (isset($_POST['login'])) {
@@ -110,7 +112,7 @@
                                     $_SESSION['temp_email'] = $email;
                                     $_SESSION['temp_type'] = $type;
                                     if(isset($_POST['rememberLogin'])){
-                                      $_SESSION['rememberLogin'];
+                                      $_SESSION['rememberLogin'] = true;
                                     }
                                     header('location: ./2FA.php');
                                   }
