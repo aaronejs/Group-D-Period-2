@@ -66,7 +66,7 @@
         }
       } else {
         var_dump(11155);
-        header("location:./login.php");
+        header("location:./login.php?error=2FA");
       }
     }
 
