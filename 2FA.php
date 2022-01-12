@@ -14,7 +14,7 @@
     if(!isset($_SESSION['token_factor'])){
       $mrand = rand(1000, 9999);
       $_SESSION['token_factor'] = $mrand;
-      
+
       $to      = $_SESSION['temp_email'];
       $subject = '2FA code';
       $message = $_SESSION['token_factor'];
@@ -84,7 +84,7 @@
         <div class="center">
           <div class="formBox">
             <div class="contentText">
-              <h2>Enter the code from your email</h2>
+              <h2>Enter the code from your email!</h2>
             </div>
             <div class="form">
               <form method="post">

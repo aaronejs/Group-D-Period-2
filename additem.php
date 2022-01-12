@@ -41,7 +41,6 @@
         </main>
         <?php
         include './includes/database.php';
-        session_start();
 
         if(isset($_POST['additem'])){
           if(!empty($_POST['Iname']) && !empty($_POST['Iquan'])){
@@ -49,11 +48,11 @@
             $Quantity = $_POST['Iquan'];
             $sql = "INSERT INTO Item (user_id, $Item_Name, $Quantity)
                     VALUES (?,?,?)";
-            if($stmt = mysqli_prepare($conn, $sql)){ 
-            mysqli_stmt_bind_param($stmt, "sss", $_SESSION['sessionID'], $Item_Name, $Quantity); 
-            if(!mysqli_stmt_execute($stmt)){ 
+            if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
+            mysqli_stmt_bind_param($stmt, "sss", $_SESSION['sessionID'], $Item_Name, $Quantity); //bind the param to be the email from the form
+            if(!mysqli_stmt_execute($stmt)){ //execute the statement
               $error = "Error executing query" . mysqli_error($conn);
-              die($error);
+              die($error); //die if we cant execute statement
               }
             }
           }

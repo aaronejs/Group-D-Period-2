@@ -47,8 +47,7 @@
         </main>
         <?php
         include './includes/database.php';
-        session_start();
-        
+
         if(isset($_POST['createroom'])){
           if(!empty($_POST['roomnum']) && !empty($_POST['floornum']) && !empty($_POST['cap'])){
             $Room_nr = $_POST['roomnum'];
@@ -66,7 +65,7 @@
           }
         }
         ?>
-        <?php
-        include './includes/footer.html'; // footer
-        ?>
-        </body>
+    <?php
+    include './includes/footer.html'; // footer
+    ?>
+    </body>
