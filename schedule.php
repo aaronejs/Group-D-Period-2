@@ -4,6 +4,21 @@
   <title>Schedule</title>
   <?php
     include './includes/head.html';
+    if(isset($_GET['week'])) {
+      $week = $_GET['week'];
+      if(isset($_POST['next'])) {
+        $week++;
+        $currentweek = $week;
+      }
+      elseif(isset($_POST['prev'])) {
+        $week--;
+        $currentweek = $week;
+      }
+    }
+    else{
+      $currentweek=idate('W',strtotime(date("Y/m/d")));
+      $week = $currentweek;
+    }
   ?>
 </head>
 <body>
@@ -15,9 +30,7 @@
   ?>
   <div class="schedule">
     <div class="week">
-      <h1>Week <?php  $currentweek=idate('W',strtotime(date("Y/m/d")));
-                      echo $currentweek;
-                ?>
+      <h1>Week <?= $currentweek?>
       </h1>
     </div>
     <div class="days">
@@ -167,9 +180,9 @@
 
       ?>
     </div>
-      <form class="move" action="schedule.php" method="post">
-                <input type="submit" name="nxt" value="Last week"><br><br>
-                <input type="submit" name="pvs" value="Next week">
+      <form class="move" action="schedule.php?week=<?= $week?>" method="post">
+                <input type="submit" name="prev" value="Last week">
+                <input type="submit" name="next" value="Next week">
       </form>
   </div>
     <?php
