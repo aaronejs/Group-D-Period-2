@@ -110,7 +110,7 @@
                                     $_SESSION['temp_email'] = $email;
                                     $_SESSION['temp_type'] = $type;
                                     if(isset($_POST['rememberLogin'])){
-                                      $_SESSION['rememberLogin'];
+                                      $_SESSION['rememberLogin'] = true;
                                     }
                                     header('location: ./2FA.php');
                                   }
