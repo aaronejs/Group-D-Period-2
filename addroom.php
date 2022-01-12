@@ -4,7 +4,7 @@
 <link href="./css/login.css" rel="stylesheet" type="text/css">
 <title>Maintanance Page</title>
 </head>
-<body>    
+<body>
     <?php
     include './includes/header.php'; // header
     ?>
@@ -40,15 +40,14 @@
                         <div class="center">
                         <p>Want to add an Item?</p> <a href="./additem.php">Click here.</a>
                         </div>
-                        </form>  
+                        </form>
                     </div>
                 </div>
-            </div>          
+            </div>
         </main>
         <?php
         include './includes/database.php';
-        session_start();
-        
+
         if(isset($_POST['createroom'])){
           if(!empty($_POST['roomnum']) && !empty($_POST['floornum']) && !empty($_POST['cap'])){
             $Room_nr = $_POST['roomnum'];

@@ -4,7 +4,7 @@
 <link href="./css/login.css" rel="stylesheet" type="text/css">
 <title>Maintanance Page</title>
 </head>
-<body>    
+<body>
     <?php
     include './includes/header.php'; // header
     ?>
@@ -34,14 +34,13 @@
                         <div class="center">
                         <p>Want to add a Room?</p> <a href="./addroom.php">Click here.</a>
                         </div>
-                        </form>  
+                        </form>
                     </div>
                 </div>
-            </div>          
+            </div>
         </main>
         <?php
         include './includes/database.php';
-        session_start();
 
         if(isset($_POST['additem'])){
           if(!empty($_POST['Iname']) && !empty($_POST['Iquan'])){
@@ -49,9 +48,9 @@
             $Quantity = $_POST['Iquan'];
             $sql = "INSERT INTO Item (user_id, $Item_Name, $Quantity)
                     VALUES (?,?,?)";
-            if($stmt = mysqli_prepare($conn, $sql)){ 
-            mysqli_stmt_bind_param($stmt, "sss", $_SESSION['sessionID'], $Item_Name, $Quantity); 
-            if(!mysqli_stmt_execute($stmt)){ 
+            if($stmt = mysqli_prepare($conn, $sql)){
+            mysqli_stmt_bind_param($stmt, "sss", $_SESSION['sessionID'], $Item_Name, $Quantity);
+            if(!mysqli_stmt_execute($stmt)){
               $error = "Error executing query" . mysqli_error($conn);
               die($error);
               }
@@ -62,4 +61,4 @@
         <?php
           include './includes/footer.html'; // Footer
         ?>
-    </body> 
+    </body>
