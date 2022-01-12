@@ -217,7 +217,9 @@
 											echo "<div class='items'>";
 											echo "<input type='checkbox' name=$item_name value=$item_id>";
 											echo "$item_name";
-											echo "<input type='number' class='occupancy' name='" . "$item_id" . "_amount" ."' min='1' max='" .$item_quantity - $amount_reserved ."' value='1'>";
+											if($item_quantity - $amount_reserved > 0){
+												echo "<input type='number' class='occupancy' name='" . "$item_id" . "_amount" ."' min='1' max='" .$item_quantity - $amount_reserved ."' value='1'>";
+											}
 											echo "</div>";
 										}
 									}
