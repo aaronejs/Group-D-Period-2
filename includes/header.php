@@ -25,7 +25,9 @@
         <?php
         if(isset($_SESSION['firstname']) && isset($_SESSION['lastname'])){
           echo "<a href='./profile.php'><p><h2>" . $_SESSION['firstname'] . "&nbsp;" . $_SESSION['lastname'] . "</h2></p></a>";
-          echo "<p><a href='./additem.php'>Maintenence</a></p>";
+          if($_SESSION['type'] == "admin"){
+            echo "<p><a href='./additem.php'>Maintenence</a></p>";
+          }
           echo "<p><a href='./logout.php'>Logout</a></p>";
         }else{
           echo "<p><a href='./login.php'>Login</a></p>";
