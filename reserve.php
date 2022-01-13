@@ -225,6 +225,8 @@
 									}
 								}
 							}
+							mysqli_stmt_close($stmt); //close statement
+							mysqli_close($conn); //close connection
 							?>
 							<input type="submit" name="submit" value="Confirm" class="submit">
 						</form>
