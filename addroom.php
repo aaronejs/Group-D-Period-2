@@ -7,6 +7,12 @@
 <body>    
     <?php
     include './includes/header.php'; // header
+    if(!isset($_SESSION['sessionID'])) {
+        header("location:./login.php?error=login");
+    }
+    if($_SESSION['type'] != 'admin') {
+        header("location:./index.php?error=type");
+    }
     ?>
         <main>
             <div class="center">
