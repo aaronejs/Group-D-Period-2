@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>File upload test</title>
+    <title>Schedule upload</title>
     <?php
     	include './includes/head.html';
     ?>
