@@ -21,6 +21,9 @@
         elseif($_GET['error'] == 'register') {
           echo "<p class='warning'>Please log out before registering another account.</p>";
         }
+        elseif($_GET['error'] == 'formdata') {
+          echo "<p class='warning'>Error occured, please try again!</p>";
+        }
       }
       if(isset($_GET['success'])) {
         if($_GET['success'] == 'login') {
