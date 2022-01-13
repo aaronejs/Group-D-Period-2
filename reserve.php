@@ -218,7 +218,12 @@
 											echo "<input type='checkbox' name=$item_name value=$item_id>";
 											echo "$item_name";
 											if($item_quantity - $amount_reserved > 0){
-												echo "<input type='number' class='occupancy' name='" . "$item_id" . "_amount" ."' min='1' max='" .$item_quantity - $amount_reserved ."' value='1'>";
+												if($_SESSION['type'] == "student"){
+													$maxAmount = 5;
+												}else
+													$maxAmount = $item_quantity - $amount_reserved;
+
+												echo "<input type='number' class='occupancy' name='" . "$item_id" . "_amount" ."' min='1' max='$maxAmount' value='1'>";
 											}
 											echo "</div>";
 										}

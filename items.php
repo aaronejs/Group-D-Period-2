@@ -27,9 +27,15 @@ if(isset($_POST['submit'])){
           if($count1-$count2 >= 0 && $count2 != 0){
             foreach ($array as $key) {
               $amount = $_POST[$key."_amount"];
+
               if(filter_var($amount, FILTER_SANITIZE_NUMBER_INT)){
                 if($amount > 0){
-                  $data[$key] = $amount;
+                  if($_SESSION['type'] == "student"){
+                    if ($amount > 5) {
+                      header("location: ./index.php?error=formdata");
+                    }
+                  }else
+                    $data[$key] = $amount;
                 }else {
                   header("location: ./index.php");
                 }
