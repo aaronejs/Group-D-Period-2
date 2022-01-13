@@ -41,14 +41,14 @@ if(isset($_POST['submit'])){
               $booking_id = filter_var($_POST['selectItems'], FILTER_SANITIZE_NUMBER_INT);
               if($booking_id){
                 foreach ($data as $item_id => $amount_reserved) {
-                  echo $item_id . "=>" . $amount_reserved . "<br>";
                   $sql = "INSERT INTO reserved_item (user_id, item_id, amount_reserved, booking_id) VALUES (?,?,?,?);";
                   if($stmt = mysqli_prepare($conn, $sql)){
                     mysqli_stmt_bind_param($stmt, "ssss", $_SESSION['sessionID'], $item_id, $amount_reserved, $booking_id);
                     if(!mysqli_stmt_execute($stmt)){
                       $error = "Error executing query" . mysqli_error($conn);
                       die($error); //die if we cant execute statement
-                    }
+                    }else
+                      header("location:./index.php?success=booked_item");
                   }
                 }
                 mysqli_stmt_close($stmt); //close statement
@@ -58,19 +58,18 @@ if(isset($_POST['submit'])){
               }
             }else{
               foreach ($data as $item_id => $amount_reserved) {
-                echo $item_id . "=>" . $amount_reserved . "<br>";
                 $sql = "INSERT INTO reserved_item (user_id, item_id, amount_reserved) VALUES (?,?,?);";
                 if($stmt = mysqli_prepare($conn, $sql)){
                   mysqli_stmt_bind_param($stmt, "sss", $_SESSION['sessionID'], $item_id, $amount_reserved);
                   if(!mysqli_stmt_execute($stmt)){
                     $error = "Error executing query" . mysqli_error($conn);
                     die($error); //die if we cant execute statement
-                  }
+                  }else
+                    header("location:./index.php?success=booked_item");
                 }
               }
               mysqli_stmt_close($stmt); //close statement
               mysqli_close($conn); //close connection
-              echo $_POST['selectItems'];
             }
           }else
             header("location: ./reserve.php?error=unsetfields");
