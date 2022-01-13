@@ -9,12 +9,11 @@ if(isset($_POST['submit'])){
     $startTime = $_SESSION['startTime'];
     $endTime = $_SESSION['endTime'];
     $date = $_SESSION['date'];
-    $item = "1";
     if($room_id && $occupancy){
-      $sql = "INSERT INTO booking (user_id, reserved_id, room_id, occupancy, start_time, end_time, `date`)
-              VALUES (?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO booking (user_id, room_id, occupancy, start_time, end_time, `date`)
+              VALUES (?,?,?,?,?,?)";
       if($stmt = mysqli_prepare($conn, $sql)){ //database parses, compiles, and performs query optimization and stores w/o executing
-        mysqli_stmt_bind_param($stmt, "sssssss", $_SESSION['sessionID'], $item, $room_id, $occupancy, $startTime, $endTime, $date); //bind the param to be the email from the form
+        mysqli_stmt_bind_param($stmt, "ssssss", $_SESSION['sessionID'], $room_id, $occupancy, $startTime, $endTime, $date); //bind the param to be the email from the form
         if(!mysqli_stmt_execute($stmt)){ //execute the statement
           $error = "Error executing query" . mysqli_error($conn);
           die($error); //die if we cant execute statement
@@ -29,5 +28,6 @@ if(isset($_POST['submit'])){
 }else {
   header("location: ./index.php");
 }
-
+mysqli_stmt_close($stmt); //close statement
+mysqli_close($conn); //close connection
 ?>
