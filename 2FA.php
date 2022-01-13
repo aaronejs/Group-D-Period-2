@@ -74,11 +74,6 @@
         header("location:./login.php?error=2FA");
       }
     }
-
-      //СГЕНЕРИТЬ РАНДОМНОЕ ЧИСЛО И ЗАПИ[НУТЬ В СЕССИОН
-      //ОТПРАВИТЬ ЕГО ПО ИМЕЙЛУ
-
-
     ?>
       <main>
         <div class="center">
