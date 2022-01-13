@@ -7,9 +7,9 @@
 <body>
     <?php
       	include './includes/header.php'; // Header
-        include './includes/remember.php'; 
+        include './includes/remember.php';
     ?>
-	<main>	
+	<main>
 		<div class="profileGrid">
 			<div class="profileColumn1">
 				<img src="./resources/design.png" alt="Colored arrows">
@@ -39,22 +39,22 @@
 					<h1 class="profileText">Change Password</h1>
 					<form action="#" method="post">
 						<p><fieldset class="changePass" id="currentPassword">
-							<legend>Old Password</legend><br>
+							<legend>Old Password</legend>
 							<input type="password" name="currentPassword"/>
 						</fieldset></p>
 						<p><fieldset class="changePass" id="newPassword">
-							<legend>New Password</legend><br>
+							<legend>New Password</legend>
 							<input type="password" name="newPassword"/>
 						</fieldset></p>
 						<p><fieldset class="changePass" id="confirmPassword">
-							<legend>New Password</legend><br>
+							<legend>New Password</legend>
 							<input type="password" name="confirmPassword"/>
 						</fieldset></p>
 						<div class="buttonCenter">
 							<button type="submit" name="changePass" value="submit" class="profileButton">Change Password</button>
 						</div>
 					</form>
-					<?php 
+					<?php
 						$error = NULL;
 						if(isset($_POST['changePass'])){ //changePassword = submit button change password
 							if (!empty($_POST['currentPassword']) && !empty($_POST['newPassword']) &&
@@ -72,7 +72,7 @@
 												if(!password_verify($oldPassword, password_hash($_POST['newPassword'], PASSWORD_DEFAULT))){
 													if($_POST['newPassword'] == $_POST['confirmPassword']){
 														if (strlen(trim($_POST['newPassword'])) > 6){
-															
+
 															$sql = "UPDATE user set password = ? WHERE id = ?";
 															if($stmt = mysqli_prepare($conn, $sql)){
 																$password = password_hash($_POST['newPassword'], PASSWORD_DEFAULT);
@@ -111,7 +111,7 @@
 							if($error != NULL){
 								echo "<div class='warning'>".$error."</div>";
 							}
-						} 
+						}
 					?>
 				</div>
 			</div>
