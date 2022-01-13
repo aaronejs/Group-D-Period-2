@@ -7,7 +7,9 @@
 <body>
     <?php
       	include './includes/header.php'; // Header
-        include './includes/remember.php';
+		if(!isset($_SESSION['sessionID'])){
+			header("location:./login.php?error=login");
+		}
     ?>
 	<main>
 		<div class="profileGrid">
@@ -119,6 +121,10 @@
 							}
 						}
 					?>
+					<div class="bookingButtonContainer">
+						<h1 class="profileText">Bookings</h1>
+						<a href="./userbookings.php"><button class="smallSquareButton">See your bookings here!</button></a>
+					</div>
 				</div>
 			</div>
 			<div class="profileColumn3">

@@ -146,7 +146,7 @@ main{
   grid-column: 3/4;
 
 }
-.thirstday{
+.thursday{
   grid-column: 4/5;
 
 }
@@ -680,6 +680,12 @@ input[type=submit]{
   font-size: 20px;
   margin-top: 20px;
   margin-bottom: 5px;
+}
+.bookingButtonContainer {
+  display: flex;
+  
+  align-items: center;
+  flex-direction: column;
 }
 /* Profile page end */
 /* Tablet bookings page start */
