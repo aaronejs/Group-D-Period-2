@@ -468,91 +468,7 @@ input[type=number]:focus{
   font-size: 16px;
   color: #4A5568;
 }
-.select-equipment {
-  max-height: 300px;
-}
-.select-equipment .item {
-  width: 100%;
-  margin: 10px auto;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.select-equipment .item .checkbox input[type=checkbox] {
-  display: none;
-}
-.select-equipment .item .checkbox label {
-  border-radius: 50px;
-  height: 15px;
-  width: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #D0D0D0;
-  border: 2px solid #ffffff;
-  margin-right: 14px;
-}
-.select-equipment .item .checkbox input[type=checkbox]:checked+label:before {
-  content: '';
-  width: 7px;
-  height: 7px;
-  background: #4A5568;
-  border-radius: 50px;
-}
-.select-equipment .item span {
-  width: 258px;
-  font-size: 16px;
-  line-height: 19px;
-  color: #4A5568;
-}
-.select-equipment .item .count {
-  height: 18px;
-  width: 41px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 15px;
-  color: #B0B0B0;
-  cursor: not-allowed;
-}
-.select-equipment .item .count.active {
-  color: #2D3748;
-}
-.select-equipment .item .count.active .minus,
-.select-equipment .item .count.active .plus {
-  cursor: pointer;
-}
-.btn {
-  height: 50px;
-  width: 350px;
-  border-radius: 5px;
-  background: #005AAA;
-  margin: 12px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  word-spacing: 6px;
-  color: #FFFFFF;
-}
-.tab#room .count {
-  width: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 25px auto 0;
-  font-size: 30px;
-  line-height: 36px;
-  color: #2D3748;
-}
-.tab#room .count .minus,
-.tab#room .count .plus {
-  cursor: pointer;
-}
-/*This is for javascript I think, please explain what this does*/
+
 #room_1,
 #room_2,
 #room_3,
@@ -564,7 +480,7 @@ input[type=number]:focus{
 }
 .roomSelect {
   fill: #89FF87;
-  cursor: pointer;
+
 }
 .roomNoSelect {
   fill: #FF7676;
@@ -572,29 +488,6 @@ input[type=number]:focus{
 }
 .roomActive {
   fill: #FFFFFF;
-}
-.info {
-  height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.info .text {
-  height: 100%;
-  width: 361px;
-  margin-left: 29px;
-}
-.info .text span {
-  font-weight: 500;
-  font-size: 30px;
-  line-height: 36px;
-  color: #000000;
-}
-.info .text p {
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 18px;
-  color: #000000;
 }
 /* Room end */
 
