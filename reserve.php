@@ -43,7 +43,7 @@
 						$error = "Error executing query" . mysqli_error($conn);
 						die(); //die if we cant execute statement
 					}else {
-						mysqli_stmt_bind_result($stmt, $id, $user_id, $reserved_id, $room_id, $occupancy, $start_time, $end_time, $date);
+						mysqli_stmt_bind_result($stmt, $id, $user_id, $room_id, $occupancy, $start_time, $end_time, $date);
 						mysqli_stmt_store_result($stmt);
 						$availability1=$availability2=$availability3=$availability4=$availability5=$availability6=$availability7 = "roomSelect";
 						$_SESSION['startTime'] = $startTime;
