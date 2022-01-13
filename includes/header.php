@@ -22,6 +22,9 @@
           }
         }else {
           echo "<div class='pages'><a href='./rooms.php'><h2>Rooms</h2></a></div>";
+          if ($_SERVER['PHP_SELF'] != "/rooms.php") {
+            header("location: ./rooms.php");
+          }
         }
       }
       ?>
