@@ -32,7 +32,6 @@ USE `bookit`;
 CREATE TABLE `booking` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `reserved_id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
   `occupancy` int(11) NOT NULL,
   `start_time` time NOT NULL,
@@ -62,7 +61,8 @@ CREATE TABLE `reserved_item` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
-  `amount_reserved` int(11) NOT NULL
+  `amount_reserved` int(11) NOT NULL,
+  `booking_id` int(11) default NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -108,7 +108,6 @@ CREATE TABLE `user` (
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `reserved_id` (`reserved_id`),
   ADD KEY `room_id` (`room_id`);
 
 --
@@ -123,7 +122,8 @@ ALTER TABLE `item`
 ALTER TABLE `reserved_item`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `item_id` (`item_id`);
+  ADD KEY `item_id` (`item_id`),
+  ADD KEY `booking_id` (`booking_id`);
 
 --
 -- Indexes for table `room`
@@ -180,15 +180,15 @@ ALTER TABLE `user`
 --
 ALTER TABLE `booking`
   ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`reserved_id`) REFERENCES `reserved_item` (`id`),
-  ADD CONSTRAINT `booking_ibfk_3` FOREIGN KEY (`room_id`) REFERENCES `room` (`Id`);
+  ADD CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `room` (`Id`);
 
 --
 -- Constraints for table `reserved_item`
 --
 ALTER TABLE `reserved_item`
   ADD CONSTRAINT `reserved_item_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`),
-  ADD CONSTRAINT `reserved_item_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `reserved_item_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `reserved_item_ibfk_3` FOREIGN KEY (`booking_id`) REFERENCES `booking` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
