@@ -33,11 +33,17 @@
 								echo $_SESSION['email'];
 							?>
 					</fieldset>
-					<p><button type="submit" name="submit" value="submit" class="profileButton">Turn Off 2FA</button></p>
+					<p>
+						<a href="#">
+							<div class="profileButton">
+								Turn Off 2FA
+							</div>
+						</a>
+					</p>
 				</div>
 				<div class="profileCenter">
 					<h1 class="profileText">Change Password</h1>
-					<form action="#" method="post">
+					<form action="" method="post">
 						<p><fieldset class="changePass" id="currentPassword">
 							<legend>Old Password</legend>
 							<input type="password" name="currentPassword"/>
@@ -51,7 +57,7 @@
 							<input type="password" name="confirmPassword"/>
 						</fieldset></p>
 						<div class="buttonCenter">
-							<button type="submit" name="changePass" value="submit" class="profileButton">Change Password</button>
+							<button type="submit" name="changePass" value="submit" class="passwordButton">Change Password</button>
 						</div>
 					</form>
 					<?php

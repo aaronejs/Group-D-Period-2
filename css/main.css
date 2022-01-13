@@ -617,12 +617,25 @@ input[type=submit]{
   margin-top: 13px;
   margin-bottom: 20px;
   background: #005aaa;
-  height: 40px;
-  border-radius: 8px;
+  height: 2em;
   color: white;
+  border-radius: 8px;
   font-size: 15px;
   border: none;
-
+  padding: .5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profileButton a{
+  color: white;
+}
+.passwordButton{
+  background: #005aaa;
+  color: white;
+  height: 3em;
+  border-radius: 8px;
+  padding: 1em;
 }
 .buttonCenter {
   display: flex;
