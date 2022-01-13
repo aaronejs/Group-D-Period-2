@@ -11,7 +11,7 @@
       <?php
       if(isset($_SESSION['type'])) {
         if($_SESSION['type'] != 'screen') {
-          echo "<div class='pages'";
+          echo "<div class='pages'>";
           echo "<a href='./index.php'><h2>Home</h2></a>";
           echo "</div>";
           echo "<div class='pages'>";
