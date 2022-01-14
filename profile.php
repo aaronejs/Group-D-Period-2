@@ -18,7 +18,25 @@
 			</div>
 			<div class="profileColumn2">
 				<div class="profileCenter">
-					<img src="./resources/profilePictures/default.png" alt="Default Profile Picture">
+					<?php
+					$sql = "SELECT image FROM user WHERE id = ?";
+					if($stmt = mysqli_prepare($conn, $sql)){
+						mysqli_stmt_bind_param($stmt, "s", $_SESSION['sessionID']);
+						if(!mysqli_stmt_execute($stmt)){
+							$error = "Error executing query" . mysqli_error($conn);
+							die();
+						}else{
+							mysqli_stmt_bind_result($stmt, $image);
+							mysqli_stmt_store_result($stmt);
+							if(mysqli_stmt_num_rows($stmt) != 0){
+								while(mysqli_stmt_fetch($stmt)){
+								}
+							}else
+								$image = "default.png";
+						}
+					}
+					?>
+					<img src="./resources/profilePictures/<?=$image?>" alt="Profile Picture">
 					<form action="upload.php" method="post" enctype="multipart/form-data">
 						<input type="file" name="uploadedFile" id="file" class="profileButton">
 						<p><button type="submit" name="submit" value="submit" class="profileButton">Upload Profile Picture</button></p>

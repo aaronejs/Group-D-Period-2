@@ -24,6 +24,18 @@
         elseif($_GET['error'] == 'formdata') {
           echo "<p class='warning'>Error occured, please try again!</p>";
         }
+        elseif($_GET['error'] == 'image') {
+          echo "<p class='warning'>Error occured, please try again!</p>";
+        }
+        elseif($_GET['error'] == 'image_size') {
+          echo "<p class='warning'>File size too large!</p>";
+        }
+        elseif($_GET['error'] == 'image_type') {
+          echo "<p class='warning'>Image can only be png, jpg or jpeg!</p>";
+        }
+        elseif($_GET['error'] == 'image_dimension') {
+          echo "<p class='warning'>Image can be a max of 800x800!</p>";
+        }
       }
       if(isset($_GET['success'])) {
         if($_GET['success'] == 'login') {
