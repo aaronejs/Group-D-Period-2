@@ -19,7 +19,7 @@
 			<div class="profileColumn2">
 				<div class="profileCenter">
 					<?php
-					$sql = "SELECT image FROM user WHERE id = ?";
+					$sql = "SELECT image FROM user WHERE id = ? AND image IS NOT NULL";
 					if($stmt = mysqli_prepare($conn, $sql)){
 						mysqli_stmt_bind_param($stmt, "s", $_SESSION['sessionID']);
 						if(!mysqli_stmt_execute($stmt)){
