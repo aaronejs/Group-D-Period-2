@@ -39,7 +39,7 @@
 					<img src="./resources/profilePictures/<?=$image?>" alt="Profile Picture">
 					<form action="upload.php" method="post" enctype="multipart/form-data">
 						<input type="file" name="uploadedFile" id="file" class="profileButton">
-						<p><button type="submit" name="submit" value="submit" class="profileButton">Upload Profile Picture</button></p>
+						<div><button type="submit" name="submit" value="submit" class="profileButton">Upload Profile Picture</button></div>
 					</form>
 				</div>
 				<div class="profileCenter">

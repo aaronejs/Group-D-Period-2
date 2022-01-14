@@ -240,6 +240,7 @@ input[type=time], input[type=date] {
   color: white;
   background-color: #005aaa;
   transition-duration: 0.4s;
+  margin-bottom: 2em;
 }
 .smallSquareButton:hover {
   cursor: pointer;
@@ -613,8 +614,12 @@ input[type=submit]{
   height: 300px;
   margin-top: 30px;
 }
+.profileCenter div{
+  margin-top: 1em;
+}
 .profileButton {
   margin-top: 13px;
+  margin: auto;
   background: #005aaa;
   height: 2em;
   color: white;

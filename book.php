@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
           $error = "Error executing query" . mysqli_error($conn);
           die($error); //die if we cant execute statement
         }else{
-          header("location:./index.php?success=booked_room");
+          header("location:./userbookings.php");
         }
       }
     }

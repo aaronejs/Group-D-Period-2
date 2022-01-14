@@ -44,9 +44,6 @@
         elseif($_GET['success'] == 'logout') {
           echo "<p class='warning'>You are now logged out of the service.</p>";
         }
-        elseif($_GET['success'] == 'booked_room') {
-          echo "<p class='success'>Room booked successfully!</p>";
-        }
         elseif($_GET['success'] == 'booked_item') {
           echo "<p class='success'>Item(s) booked successfully!</p>";
         }
