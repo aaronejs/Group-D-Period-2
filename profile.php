@@ -18,7 +18,7 @@
 			</div>
 			<div class="profileColumn2">
 				<div class="profileCenter">
-					<img src="./resources/profile_pictures/default.png" alt="Default Profile Picture">
+					<img src="./resources/profilePictures/default.png" alt="Default Profile Picture">
 					<form action="upload.php" method="post" enctype="multipart/form-data">
 						<input type="file" name="uploadedFile" id="file" class="profileButton">
 						<p><button type="submit" name="submit" value="submit" class="profileButton">Upload Profile Picture</button></p>
