@@ -38,6 +38,12 @@
         elseif($_GET['success'] == 'booked_item') {
           echo "<p class='success'>Item(s) booked successfully!</p>";
         }
+        elseif($_GET['success'] == '2FAon') {
+          echo "<p class='success'>2FA successfully turned on!</p>";
+        }
+        elseif($_GET['success'] == '2FAoff') {
+          echo "<p class='success'>2FA successfully turned off!</p>";
+        }
       }
 			include './includes/search.php';
 			?>

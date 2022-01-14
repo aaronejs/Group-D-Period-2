@@ -36,9 +36,26 @@
 							?>
 					</fieldset>
 					<p>
-						<a href="#">
+						<a href="./2FAfunc.php">
 							<div class="profileButton">
-								Turn Off 2FA
+								<?php
+								$sql = "SELECT 2FA FROM user WHERE id = ?";
+								if($stmt = mysqli_prepare($conn, $sql)){
+									mysqli_stmt_bind_param($stmt, 's', $_SESSION['sessionID']);
+									if(mysqli_stmt_execute($stmt)){
+									mysqli_stmt_bind_result($stmt, $twoFac); //bind results
+									mysqli_stmt_store_result($stmt);
+										if(mysqli_stmt_num_rows($stmt) != 0){
+											while(mysqli_stmt_fetch($stmt)){
+												if($twoFac != 0)
+													echo "Turn Off 2FA";
+												else
+													echo "Turn On 2FA";
+											}
+										}
+									}
+								}
+								?>
 							</div>
 						</a>
 					</p>
