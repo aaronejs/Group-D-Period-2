@@ -12,7 +12,7 @@
     }
     ?>
     <main>
-      <div class="bigBox">
+      <div class="userBookingContainer">
         <h1>Bookings</h1>
         <?php
         include './includes/database.php';
@@ -28,8 +28,8 @@
                 mysqli_stmt_store_result($stmt);
                 if(mysqli_stmt_num_rows($stmt) != 0) {
                     echo "<p>Number of bookings: " . mysqli_stmt_num_rows($stmt);
-                    echo "<table id='userBookings'>";
-                    echo "<th>   </th><th>   </th><th>   </th><th>   </th>";
+                    echo "<table id='userBooking'>";
+                    echo "<th>Room</th><th>Start time</th><th>End time</th><th>Date</th>";
                     while(mysqli_stmt_fetch($stmt)) {
                         $zeros = strlen($roomNr);
                         if($zeros == 1) {

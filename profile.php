@@ -121,7 +121,7 @@
 							}
 						}
 					?>
-					<div class="bookingButtonContainer">
+					<div class="userBookingButtonContainer">
 						<h1 class="profileText">Bookings</h1>
 						<a href="./userbookings.php"><button class="smallSquareButton">See your bookings here!</button></a>
 					</div>

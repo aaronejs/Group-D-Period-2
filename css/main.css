@@ -681,11 +681,33 @@ input[type=submit]{
   margin-top: 20px;
   margin-bottom: 5px;
 }
-.bookingButtonContainer {
+.userBookingButtonContainer {
   display: flex;
-  
   align-items: center;
   flex-direction: column;
+}
+.userBookingContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100%;
+  margin-top: 20px;
+  width: 100%;
+}
+#userBooking {
+  width: 50%;
+  border-collapse: collapse;
+}
+#userBooking, #userBooking th, #userBooking td {
+  border: 2px solid gray;
+  background-color: lightgray;
+}
+#userBooking th {
+  height: 2em;
+}
+#userBooking td {
+  text-align: center;
+  height: 2em;
 }
 /* Profile page end */
 /* Tablet bookings page start */
