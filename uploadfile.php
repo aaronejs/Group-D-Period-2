@@ -9,7 +9,7 @@ if(isset($_POST['submit'])) {
     if(file_exists($_FILES['fileUpload']['tmp_name']) || is_uploaded_file($_FILES['fileUpload']['tmp_name'])) {
         if($_FILES["fileUpload"]["size"] < 10000000) {      //checks if filesize is less than 10mb
             $uploadFileType = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $_FILES["fileUpload"]["tmp_name"]);
-            $fileTypes = ["text/csv", "text/plain"];
+            $fileTypes = ["text/csv", "text/plain"];        //text/plain due to csv sometimes being recognized as plain text.
             if(in_array($uploadFileType, $fileTypes)) {     //checks filetype
                 if(!$_FILES["fileUpload"]["error"] > 0) {   //checks for errors
                     $linesArray = file($_FILES["fileUpload"]["tmp_name"], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);   //gets temporary file path and retrieves file contents per line (array)

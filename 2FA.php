@@ -10,11 +10,10 @@
 <body>
     <?php
     include './includes/header.php'; // header
-
+    //  creating 2FA code and putting it in session 
     if(!isset($_SESSION['token_factor'])){
       $mrand = rand(1000, 9999);
       $_SESSION['token_factor'] = $mrand;
-
       $to      = $_SESSION['temp_email'];
       $subject = '2FA code';
       $message = $_SESSION['token_factor'];
@@ -22,7 +21,7 @@
       $header .= "MIME-Version: 1.0" . "\r\n";
       $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
-
+      // mail function
       if(!mail($to, $subject, $message, $header)){
         session_unset();
         session_destroy();

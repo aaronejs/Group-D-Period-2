@@ -103,6 +103,15 @@
                                 header("location:./thankyou.php"); //redirect to thankyou page
                               }else{
                                 $error = "Error sending verification email";
+                                $sql = "DELETE FROM `user` WHERE `user`.`email` = ?";
+                                if($stmt = mysqli_prepare($conn, $sql)){
+                                  mysqli_stmt_bind_param($stmt, "s", $email);
+                                  if(!mysqli_stmt_execute($stmt)){
+                                    die();
+                                  }
+                                  mysqli_stmt_close($stmt); //close statement
+                                  mysqli_close($conn); //close connection
+                                }
                               }
                             }else{
                               $error = "Error: " . mysqli_error($conn);
