@@ -23,7 +23,7 @@
                     echo "Image dimension should be within 800X800."; 
                 }elseif (file_exists("./resources/profilePictures/" . $_FILES["uploadedFile"]["name"])){
                     echo $_FILES["uploadedFile"]["name"] . " already exists. ";
-                }elseif(move_uploaded_file($_FILES["uploadedFile"]["tmp_name"], "./resources/profilePictures/". $_FILES["uploadedFile"]["tmp_name"])){
+                }elseif(move_uploaded_file($_FILES["uploadedFile"]["tmp_name"], "./resources/profilePictures/". $_FILES["uploadedFile"]["name"])){
                     echo "Profile photo uploaded";
                 }else{
                     echo "Something went wrong while uploading.";
